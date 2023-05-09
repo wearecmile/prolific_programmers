@@ -28,6 +28,9 @@ public class Attendance {
     @Column(name = "attendance_user_id")
     private Long attendanceUserId;
 
+    @Column(name = "attendance_is_present")
+    private Boolean attendanceIsPresent = Boolean.TRUE;
+
     @CreationTimestamp
     @Column(name = "attendance_created_date_time", nullable = false, updatable = false)
     private Date attendanceCreatedDateTime = new Date();
