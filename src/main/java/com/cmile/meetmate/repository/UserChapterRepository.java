@@ -9,8 +9,8 @@ import java.util.List;
 @Repository
 public interface UserChapterRepository extends JpaRepository<UserChapter, Long> {
 
-    List<UserChapter> findAllUcChapterIdByUcUserId(Long ucChapterId);
+    List<UserChapter> findAllUcChapterIdByUcUserId(Long ucUserId);
 
-    List<UserChapter> findAllUcUserIdByUcChapterId(Long ucUserId);
+    List<UserChapter> findAllUcUserIdByUcChapterId(Long ucChapterId);
 
 }

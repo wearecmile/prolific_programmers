@@ -14,8 +14,8 @@ public interface AttendanceService {
 
     ResponseEntity<Object> delete(Long attendanceId);
 
-    ResponseEntity<Object> findAllAttendanceByMeeting(Long attendanceId);
+    ResponseEntity<Object> findAllAttendanceByMeeting(Long meetingId);
 
-    ResponseEntity<Object> getAllVisitorByMeeting(Long attendanceMeetingId);
+    ResponseEntity<Object> getAllVisitorByMeeting(Long meetingId);
 
 }

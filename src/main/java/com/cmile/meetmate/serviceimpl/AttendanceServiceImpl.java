@@ -59,7 +59,7 @@ public class AttendanceServiceImpl implements AttendanceService {
         }
         return ResponseEntity.status((HttpStatus.BAD_REQUEST))
                 .body(JsonResponse.builder()
-                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_ATTENDANCE_FOUND)
+                        .message(StringConstants.REQUEST_SUCCESS_MESSAGE_ATTENDANCE_FETCHED)
                         .status(HttpStatus.BAD_REQUEST)
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
@@ -91,6 +91,8 @@ public class AttendanceServiceImpl implements AttendanceService {
         if (optionalAttendance.isPresent()) {
             Attendance updateAttendance = optionalAttendance.get();
             updateAttendance.setAttendanceIsPresent(attendance.getAttendanceIsPresent());
+            updateAttendance.setAttendanceMeetingId(attendance.getAttendanceMeetingId());
+            updateAttendance.setAttendanceUserId(attendance.getAttendanceUserId());
             updateAttendance.setAttendanceUpdatedDateTime(attendance.getAttendanceUpdatedDateTime());
             attendanceRepository.save(updateAttendance);
             return ResponseEntity.status((HttpStatus.OK))
@@ -149,7 +151,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public ResponseEntity<Object> getAllVisitorByMeeting(Long attendanceMeetingId) {
+    public ResponseEntity<Object> getAllVisitorByMeeting(Long meetingId) {
         Optional<Role> role = roleRepository.findByRoleName(RoleEnum.VISITOR);
         if (!role.isPresent()) {
             return ResponseEntity.status((HttpStatus.BAD_REQUEST))
@@ -159,7 +161,7 @@ public class AttendanceServiceImpl implements AttendanceService {
                             .statusCode(HttpStatus.BAD_REQUEST.value())
                             .build());
         } else {
-            List<Attendance> optionalAttendance = attendanceRepository.findAllByUser_Role_RoleIdAndAttendanceMeetingId(role.get().getRoleId(), attendanceMeetingId);
+            List<Attendance> optionalAttendance = attendanceRepository.findAllByUser_Role_RoleIdAndAttendanceMeetingId(role.get().getRoleId(), meetingId);
             if (optionalAttendance.isEmpty())
                 return ResponseEntity.status((HttpStatus.BAD_REQUEST))
                         .body(JsonResponse.builder()

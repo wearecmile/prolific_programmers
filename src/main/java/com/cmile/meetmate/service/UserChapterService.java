@@ -14,7 +14,7 @@ public interface UserChapterService {
 
     ResponseEntity<Object> delete(Long ucId);
 
-    ResponseEntity<Object> findAllUcUserId(Long ucUserId);
+    ResponseEntity<Object> findAllUserId(Long ucUserId);
 
-    ResponseEntity<Object> findAllUcChapterId(Long ucChapterId);
+    ResponseEntity<Object> findAllChapterId(Long ucChapterId);
 }

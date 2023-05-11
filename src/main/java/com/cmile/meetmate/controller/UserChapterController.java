@@ -29,13 +29,13 @@ public class UserChapterController {
     }
 
     @GetMapping(value = ApiConstants.REQUEST_MAPPING_KEY_FIND_USER_BY_CHAPTER)
-    public ResponseEntity<Object> findAllUcUserId(@PathVariable Long id) {
-        return userChapterService.findAllUcUserId(id);
+    public ResponseEntity<Object> findAllUserId(@PathVariable Long id) {
+        return userChapterService.findAllUserId(id);
     }
 
     @GetMapping(value = ApiConstants.REQUEST_MAPPING_KEY_FIND_CHAPTER_BY_USER)
-    public ResponseEntity<Object> findAllUcChapterId(@PathVariable Long id) {
-        return userChapterService.findAllUcChapterId(id);
+    public ResponseEntity<Object> findAllChapterId(@PathVariable Long id) {
+        return userChapterService.findAllChapterId(id);
     }
 
     @PutMapping

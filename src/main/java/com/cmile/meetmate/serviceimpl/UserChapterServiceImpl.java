@@ -84,6 +84,8 @@ public class UserChapterServiceImpl implements UserChapterService {
         Optional<UserChapter> optionalUserChapter = userChapterRepository.findById(userChapter.getUcId());
         if (optionalUserChapter.isPresent()) {
             UserChapter updateUserChapter = optionalUserChapter.get();
+            updateUserChapter.setUcUserId(userChapter.getUcUserId());
+            updateUserChapter.setUcChapterId(updateUserChapter.getUcChapterId());
             updateUserChapter.setUcUpdatedDateTime(userChapter.getUcUpdatedDateTime());
             userChapterRepository.save(updateUserChapter);
             return ResponseEntity.status((HttpStatus.OK))
@@ -122,7 +124,7 @@ public class UserChapterServiceImpl implements UserChapterService {
     }
 
     @Override
-    public ResponseEntity<Object> findAllUcChapterId(Long ucChapterId) {
+    public ResponseEntity<Object> findAllChapterId(Long ucChapterId) {
         List<UserChapter> userChapterList = userChapterRepository.findAllUcChapterIdByUcUserId(ucChapterId);
         if (userChapterList.isEmpty())
             return ResponseEntity.status((HttpStatus.BAD_REQUEST))
@@ -142,7 +144,7 @@ public class UserChapterServiceImpl implements UserChapterService {
     }
 
     @Override
-    public ResponseEntity<Object> findAllUcUserId(Long ucUserId) {
+    public ResponseEntity<Object> findAllUserId(Long ucUserId) {
         List<UserChapter> userChapterList = userChapterRepository.findAllUcUserIdByUcChapterId(ucUserId);
         if (userChapterList.isEmpty())
             return ResponseEntity.status((HttpStatus.BAD_REQUEST))
