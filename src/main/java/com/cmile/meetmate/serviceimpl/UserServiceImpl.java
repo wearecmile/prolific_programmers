@@ -82,7 +82,6 @@ public class UserServiceImpl implements UserService {
         if (optionalUser.isPresent()) {
             User updateUser = optionalUser.get();
             updateUser.setUserName(user.getUserName());
-            updateUser.setUserContact(user.getUserContact());
             updateUser.setUserOpeningBalance(user.getUserOpeningBalance());
             updateUser.setUserClosingBalance(user.getUserClosingBalance());
             updateUser.setUserUpdatedDateTime(user.getUserUpdatedDateTime());
