@@ -15,27 +15,27 @@ public class RoleController {
     RoleService roleService;
 
     @GetMapping
-    public ResponseEntity<Object> findAll(){
+    public ResponseEntity<Object> findAll() {
         return roleService.findAll();
     }
 
-    @GetMapping(ApiConstant.REQUEST_MAPPING_ROLE_ID)
-    public ResponseEntity<Object> findById(@PathVariable Long roleId){
-        return roleService.findById(roleId);
+    @GetMapping(ApiConstant.REQUEST_MAPPING_KEY_ID)
+    public ResponseEntity<Object> findById(@PathVariable Long id) {
+        return roleService.findById(id);
     }
 
     @PostMapping
-    public ResponseEntity<Object> save(@RequestBody Role role){
+    public ResponseEntity<Object> save(@RequestBody Role role) {
         return roleService.save(role);
     }
 
-    @PutMapping(ApiConstant.REQUEST_MAPPING_ROLE_ID)
-    public ResponseEntity<Object> update(@RequestBody Role role){
+    @PutMapping
+    public ResponseEntity<Object> update(@RequestBody Role role) {
         return roleService.update(role);
     }
 
-    @DeleteMapping(ApiConstant.REQUEST_MAPPING_ROLE_ID)
-    public ResponseEntity<Object> delete(@PathVariable Long roleId){
-        return roleService.delete(roleId);
+    @DeleteMapping(ApiConstant.REQUEST_MAPPING_KEY_ID)
+    public ResponseEntity<Object> delete(@PathVariable Long id) {
+        return roleService.delete(id);
     }
 }

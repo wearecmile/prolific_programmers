@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +33,7 @@ public class ChapterServiceImpl implements ChapterService {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_CHAPTER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -44,14 +45,14 @@ public class ChapterServiceImpl implements ChapterService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_SELECTED_CHAPTER_FETCHED +chapterId)
+                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_SELECTED_CHAPTER_FETCHED + chapterId)
                             .status(HttpStatus.OK)
                             .data(chapterOptional.get())
                             .build());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_CHAPTER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -70,7 +71,7 @@ public class ChapterServiceImpl implements ChapterService {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_CHAPTER_NOT_CREATED)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -79,7 +80,7 @@ public class ChapterServiceImpl implements ChapterService {
     public ResponseEntity<Object> update(Chapter chapter) {
         Optional<Chapter> optionalChapter = chapterRepository.findById(chapter.getChapterId());
         if (optionalChapter.isPresent()) {
-            Chapter updateChapter=optionalChapter.get();
+            Chapter updateChapter = optionalChapter.get();
             updateChapter.setChapterName(chapter.getChapterName());
             updateChapter.setChapterUpdatedDateTime(chapter.getChapterUpdatedDateTime());
             chapterRepository.save(updateChapter);
@@ -94,7 +95,7 @@ public class ChapterServiceImpl implements ChapterService {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_CHAPTER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -113,7 +114,7 @@ public class ChapterServiceImpl implements ChapterService {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_CHAPTER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }

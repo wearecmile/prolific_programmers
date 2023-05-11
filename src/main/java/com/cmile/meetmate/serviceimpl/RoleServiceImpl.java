@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +33,7 @@ public class RoleServiceImpl implements RoleService {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_ROLE_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -44,14 +45,14 @@ public class RoleServiceImpl implements RoleService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_SELECTED_ROLE_FETCHED +roleId)
+                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_SELECTED_ROLE_FETCHED + roleId)
                             .status(HttpStatus.OK)
                             .data(roleOptional.get())
                             .build());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_ROLE_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -70,7 +71,7 @@ public class RoleServiceImpl implements RoleService {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_ROLE_NOT_CREATED)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -79,7 +80,7 @@ public class RoleServiceImpl implements RoleService {
     public ResponseEntity<Object> update(Role role) {
         Optional<Role> optionalRole = roleRepository.findById(role.getRoleId());
         if (optionalRole.isPresent()) {
-            Role updateRole=optionalRole.get();
+            Role updateRole = optionalRole.get();
             updateRole.setRoleName(role.getRoleName());
             updateRole.setRoleUpdatedDateTime(role.getRoleUpdatedDateTime());
             roleRepository.save(updateRole);
@@ -94,7 +95,7 @@ public class RoleServiceImpl implements RoleService {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_ROLE_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -113,7 +114,7 @@ public class RoleServiceImpl implements RoleService {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_ROLE_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }

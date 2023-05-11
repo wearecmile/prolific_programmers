@@ -15,27 +15,27 @@ public class ChapterController {
     ChapterService chapterService;
 
     @GetMapping
-    public ResponseEntity<Object> findAll(){
+    public ResponseEntity<Object> findAll() {
         return chapterService.findAll();
     }
 
-    @GetMapping(ApiConstant.REQUEST_MAPPING_CHAPTER_ID)
-    public ResponseEntity<Object> findById(@PathVariable Long chapterId){
-        return chapterService.findById(chapterId);
+    @GetMapping(ApiConstant.REQUEST_MAPPING_KEY_ID)
+    public ResponseEntity<Object> findById(@PathVariable Long id) {
+        return chapterService.findById(id);
     }
 
     @PostMapping
-    public ResponseEntity<Object> save(@RequestBody Chapter chapter){
+    public ResponseEntity<Object> save(@RequestBody Chapter chapter) {
         return chapterService.save(chapter);
     }
 
-    @PutMapping(ApiConstant.REQUEST_MAPPING_CHAPTER_ID)
-    public ResponseEntity<Object> update(@RequestBody Chapter chapter){
+    @PutMapping
+    public ResponseEntity<Object> update(@RequestBody Chapter chapter) {
         return chapterService.update(chapter);
     }
 
-    @DeleteMapping(ApiConstant.REQUEST_MAPPING_CHAPTER_ID)
-    public ResponseEntity<Object>delete(@PathVariable Long chapterId){
-        return chapterService.delete(chapterId);
+    @DeleteMapping(ApiConstant.REQUEST_MAPPING_KEY_ID)
+    public ResponseEntity<Object> delete(@PathVariable Long id) {
+        return chapterService.delete(id);
     }
 }

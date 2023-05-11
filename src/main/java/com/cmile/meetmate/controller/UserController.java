@@ -15,33 +15,32 @@ public class UserController {
     UserService userService;
 
     @GetMapping
-    public ResponseEntity<Object> findAll(){
+    public ResponseEntity<Object> findAll() {
         return userService.findAll();
     }
 
-    @GetMapping(ApiConstant.REQUEST_MAPPING_USER_ID)
-    public ResponseEntity<Object> findById(@PathVariable Long userId){
-        return userService.findById(userId);
+    @GetMapping(ApiConstant.REQUEST_MAPPING_KEY_ID)
+    public ResponseEntity<Object> findById(@PathVariable Long id) {
+        return userService.findById(id);
     }
 
     @PostMapping
-    public ResponseEntity<Object> save(@RequestBody User user){
+    public ResponseEntity<Object> save(@RequestBody User user) {
         return userService.save(user);
     }
 
-    @PutMapping(ApiConstant.REQUEST_MAPPING_USER_ID)
-    public ResponseEntity<Object> update(@RequestBody User user){
+    @PutMapping
+    public ResponseEntity<Object> update(@RequestBody User user) {
         return userService.update(user);
     }
 
-    @DeleteMapping(ApiConstant.REQUEST_MAPPING_USER_ID)
-    public ResponseEntity<Object> delete(@PathVariable Long userId){
-        return userService.delete(userId);
+    @DeleteMapping(ApiConstant.REQUEST_MAPPING_KEY_ID)
+    public ResponseEntity<Object> delete(@PathVariable Long id) {
+        return userService.delete(id);
     }
 
     @GetMapping(ApiConstant.REQUEST_MAPPING_KEY_ROLE_BY_ROLE_NAME)
-    public ResponseEntity<Object> findAllUserIdByUserRole(@PathVariable Long userRole){
+    public ResponseEntity<Object> findAllByUserRole(@PathVariable Long userRole) {
         return userService.findAllByUserRole(userRole);
     }
-
 }

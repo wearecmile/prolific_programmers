@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_USER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -52,28 +52,39 @@ public class UserServiceImpl implements UserService {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_USER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
 
     @Override
     public ResponseEntity<Object> save(User user) {
-        User savedUser = userRepository.save(user);
-        if (savedUser != null)
-            return ResponseEntity.status(HttpStatus.OK).body(
+        Optional<User> optionalUser = userRepository.findByUserContact(user.getUserContact());
+        if (optionalUser.isPresent()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                     JsonResponse.builder()
-                            .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_USER_CREATED)
-                            .status(HttpStatus.OK)
-                            .data(savedUser)
+                            .statusCode(HttpStatus.BAD_REQUEST.value())
+                            .message(StringConstant.REQUEST_FAILURE_MESSAGE_USER_NOT_CREATED)
+                            .status(HttpStatus.BAD_REQUEST)
                             .build());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                JsonResponse.builder()
-                        .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
-                        .status(HttpStatus.BAD_REQUEST)
-                        .build());
+        } else {
+            User savedUser = userRepository.save(user);
+            if (savedUser != null) {
+                return ResponseEntity.status(HttpStatus.OK).body(
+                        JsonResponse.builder()
+                                .statusCode(HttpStatus.OK.value())
+                                .message(StringConstant.REQUEST_SUCCESS_MESSAGE_USER_CREATED)
+                                .status(HttpStatus.OK)
+                                .data(savedUser)
+                                .build());
+            }
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    JsonResponse.builder()
+                            .statusCode(HttpStatus.BAD_REQUEST.value())
+                            .message(StringConstant.REQUEST_FAILURE_MESSAGE_USER_NOT_CREATED)
+                            .status(HttpStatus.BAD_REQUEST)
+                            .build());
+        }
     }
 
     @Override
@@ -82,6 +93,8 @@ public class UserServiceImpl implements UserService {
         if (optionalUser.isPresent()) {
             User updateUser = optionalUser.get();
             updateUser.setUserName(user.getUserName());
+            updateUser.setUserContact(user.getUserContact());
+            updateUser.setUserRole(user.getUserRole());
             updateUser.setUserOpeningBalance(user.getUserOpeningBalance());
             updateUser.setUserClosingBalance(user.getUserClosingBalance());
             updateUser.setUserUpdatedDateTime(user.getUserUpdatedDateTime());
@@ -97,7 +110,7 @@ public class UserServiceImpl implements UserService {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_USER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -116,7 +129,7 @@ public class UserServiceImpl implements UserService {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_USER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -135,7 +148,7 @@ public class UserServiceImpl implements UserService {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_USER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }

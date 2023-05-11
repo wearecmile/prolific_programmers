@@ -16,4 +16,5 @@ public interface UserService {
     ResponseEntity<Object> delete(Long userId);
 
     ResponseEntity<Object> findAllByUserRole(Long userRole);
+
 }
