@@ -17,10 +17,11 @@ import java.util.Optional;
 public class UserChapterServiceImpl implements UserChapterService {
     @Autowired
     UserChapterRepository userChapterRepository;
+
     @Override
     public ResponseEntity<Object> findAll() {
         List<UserChapter> userChapterList = userChapterRepository.findAll();
-        if(userChapterList.isEmpty()){
+        if (userChapterList.isEmpty()) {
             return ResponseEntity.status((HttpStatus.BAD_REQUEST))
                     .body(JsonResponse.builder()
                             .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_USER_CHAPTER_FOUND)
@@ -41,7 +42,7 @@ public class UserChapterServiceImpl implements UserChapterService {
     @Override
     public ResponseEntity<Object> findById(Long ucId) {
         Optional<UserChapter> optionalUserChapter = userChapterRepository.findById(ucId);
-        if(optionalUserChapter.isPresent()){
+        if (optionalUserChapter.isPresent()) {
             return ResponseEntity.status((HttpStatus.OK))
                     .body(JsonResponse.builder()
                             .data(optionalUserChapter)
@@ -60,63 +61,103 @@ public class UserChapterServiceImpl implements UserChapterService {
 
     @Override
     public ResponseEntity<Object> save(UserChapter userChapter) {
-            userChapter = userChapterRepository.save(userChapter);
-            if(userChapter == null){
-                return ResponseEntity.status((HttpStatus.BAD_REQUEST))
-                        .body(JsonResponse.builder()
-                                .message(StringConstants.REQUEST_FAILURE_MESSAGE_USER_CHAPTER_NOT_CREATED)
-                                .status(HttpStatus.BAD_REQUEST)
-                                .statusCode(HttpStatus.BAD_REQUEST.value())
-                                .build());
-            }
-            return ResponseEntity.status((HttpStatus.OK))
+        userChapter = userChapterRepository.save(userChapter);
+        if (userChapter == null) {
+            return ResponseEntity.status((HttpStatus.BAD_REQUEST))
                     .body(JsonResponse.builder()
-                            .data(userChapter)
-                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_CHAPTER_CREATED)
-                            .status(HttpStatus.OK)
-                            .statusCode(HttpStatus.OK.value())
+                            .message(StringConstants.REQUEST_FAILURE_MESSAGE_USER_CHAPTER_NOT_CREATED)
+                            .status(HttpStatus.BAD_REQUEST)
+                            .statusCode(HttpStatus.BAD_REQUEST.value())
                             .build());
+        }
+        return ResponseEntity.status((HttpStatus.OK))
+                .body(JsonResponse.builder()
+                        .data(userChapter)
+                        .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_CHAPTER_CREATED)
+                        .status(HttpStatus.OK)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
     }
 
     @Override
     public ResponseEntity<Object> update(UserChapter userChapter) {
-            Optional<UserChapter> optionalUserChapter = userChapterRepository.findById(userChapter.getUcId());
-            if(optionalUserChapter.isPresent()){
-                UserChapter updateUserChapter = optionalUserChapter.get();
-                updateUserChapter.setUcUpdatedDateTime(userChapter.getUcUpdatedDateTime());
-                updateUserChapter = userChapterRepository.save(updateUserChapter);
-                return ResponseEntity.status((HttpStatus.OK))
-                        .body(JsonResponse.builder()
-                                .data(optionalUserChapter)
-                                .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_CHAPTER_UPDATED)
-                                .status(HttpStatus.OK)
-                                .statusCode(HttpStatus.OK.value())
-                                .build());
-            }
-            return ResponseEntity.status((HttpStatus.BAD_REQUEST))
+        Optional<UserChapter> optionalUserChapter = userChapterRepository.findById(userChapter.getUcId());
+        if (optionalUserChapter.isPresent()) {
+            UserChapter updateUserChapter = optionalUserChapter.get();
+            updateUserChapter.setUcUpdatedDateTime(userChapter.getUcUpdatedDateTime());
+            userChapterRepository.save(updateUserChapter);
+            return ResponseEntity.status((HttpStatus.OK))
                     .body(JsonResponse.builder()
-                            .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_USER_CHAPTER_FOUND)
-                            .status(HttpStatus.BAD_REQUEST)
-                            .statusCode(HttpStatus.BAD_REQUEST.value())
+                            .data(optionalUserChapter)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_CHAPTER_UPDATED)
+                            .status(HttpStatus.OK)
+                            .statusCode(HttpStatus.OK.value())
                             .build());
+        }
+        return ResponseEntity.status((HttpStatus.BAD_REQUEST))
+                .body(JsonResponse.builder()
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_USER_CHAPTER_FOUND)
+                        .status(HttpStatus.BAD_REQUEST)
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .build());
     }
 
     @Override
     public ResponseEntity<Object> delete(Long ucId) {
-            if(userChapterRepository.findById(ucId).isPresent()){
-                userChapterRepository.deleteById(ucId);
-                return ResponseEntity.status((HttpStatus.OK))
-                        .body(JsonResponse.builder()
-                                .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_CHAPTER_DELETED)
-                                .status(HttpStatus.OK)
-                                .statusCode(HttpStatus.OK.value())
-                                .build());
-            }
+        if (userChapterRepository.findById(ucId).isPresent()) {
+            userChapterRepository.deleteById(ucId);
+            return ResponseEntity.status((HttpStatus.OK))
+                    .body(JsonResponse.builder()
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_CHAPTER_DELETED)
+                            .status(HttpStatus.OK)
+                            .statusCode(HttpStatus.OK.value())
+                            .build());
+        }
+        return ResponseEntity.status((HttpStatus.BAD_REQUEST))
+                .body(JsonResponse.builder()
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_USER_CHAPTER_FOUND)
+                        .status(HttpStatus.BAD_REQUEST)
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .build());
+    }
+
+    @Override
+    public ResponseEntity<Object> findAllUcChapterId(Long ucChapterId) {
+        List<UserChapter> userChapterList = userChapterRepository.findAllUcChapterIdByUcUserId(ucChapterId);
+        if (userChapterList.isEmpty())
             return ResponseEntity.status((HttpStatus.BAD_REQUEST))
                     .body(JsonResponse.builder()
                             .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_USER_CHAPTER_FOUND)
                             .status(HttpStatus.BAD_REQUEST)
                             .statusCode(HttpStatus.BAD_REQUEST.value())
                             .build());
+
+        return ResponseEntity.status((HttpStatus.OK))
+                .body(JsonResponse.builder()
+                        .data(userChapterList)
+                        .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_CHAPTER_FETCHED)
+                        .status(HttpStatus.OK)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+    }
+
+    @Override
+    public ResponseEntity<Object> findAllUcUserId(Long ucUserId) {
+        List<UserChapter> userChapterList = userChapterRepository.findAllUcUserIdByUcChapterId(ucUserId);
+        if (userChapterList.isEmpty())
+            return ResponseEntity.status((HttpStatus.BAD_REQUEST))
+                    .body(JsonResponse.builder()
+                            .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_USER_CHAPTER_FOUND)
+                            .status(HttpStatus.BAD_REQUEST)
+                            .statusCode(HttpStatus.BAD_REQUEST.value())
+                            .build());
+
+        return ResponseEntity.status((HttpStatus.OK))
+                .body(JsonResponse.builder()
+                        .data(userChapterList)
+                        .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_CHAPTER_FETCHED)
+                        .status(HttpStatus.OK)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
     }
 }

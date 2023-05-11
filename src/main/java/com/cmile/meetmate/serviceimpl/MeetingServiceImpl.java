@@ -21,7 +21,7 @@ public class MeetingServiceImpl implements MeetingService {
     @Override
     public ResponseEntity<Object> findAll() {
         List<Meeting> meetingList = meetingRepository.findAll();
-        if(meetingList.isEmpty()){
+        if (meetingList.isEmpty()) {
             return ResponseEntity.status((HttpStatus.BAD_REQUEST))
                     .body(JsonResponse.builder()
                             .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_MEETING_FOUND)
@@ -42,7 +42,7 @@ public class MeetingServiceImpl implements MeetingService {
     @Override
     public ResponseEntity<Object> findById(Long meetingId) {
         Optional<Meeting> optionalMeeting = meetingRepository.findById(meetingId);
-        if(optionalMeeting.isPresent()){
+        if (optionalMeeting.isPresent()) {
             return ResponseEntity.status((HttpStatus.OK))
                     .body(JsonResponse.builder()
                             .data(optionalMeeting)
@@ -62,7 +62,7 @@ public class MeetingServiceImpl implements MeetingService {
     @Override
     public ResponseEntity<Object> save(Meeting meeting) {
         meeting = meetingRepository.save(meeting);
-        if(meeting == null){
+        if (meeting == null) {
             return ResponseEntity.status((HttpStatus.BAD_REQUEST))
                     .body(JsonResponse.builder()
                             .message(StringConstants.REQUEST_FAILURE_MESSAGE_MEETING_NOT_CREATED)
@@ -82,7 +82,7 @@ public class MeetingServiceImpl implements MeetingService {
     @Override
     public ResponseEntity<Object> update(Meeting meeting) {
         Optional<Meeting> optionalMeeting = meetingRepository.findById(meeting.getMeetingId());
-        if(optionalMeeting.isPresent()){
+        if (optionalMeeting.isPresent()) {
             Meeting updateMeeting = optionalMeeting.get();
             updateMeeting.setMeetingCost(meeting.getMeetingCost());
             updateMeeting.setMeetingDate(meeting.getMeetingDate());
@@ -90,7 +90,7 @@ public class MeetingServiceImpl implements MeetingService {
             updateMeeting.setMeetingTime(meeting.getMeetingTime());
             updateMeeting.setMeetingUpdatedDateTime(meeting.getMeetingUpdatedDateTime());
             updateMeeting.setMeetingTitle(meeting.getMeetingTitle());
-            updateMeeting = meetingRepository.save(updateMeeting);
+            meetingRepository.save(updateMeeting);
             return ResponseEntity.status((HttpStatus.OK))
                     .body(JsonResponse.builder()
                             .data(optionalMeeting)
@@ -109,7 +109,7 @@ public class MeetingServiceImpl implements MeetingService {
 
     @Override
     public ResponseEntity<Object> delete(Long meetingId) {
-        if(meetingRepository.findById(meetingId).isPresent()){
+        if (meetingRepository.findById(meetingId).isPresent()) {
             meetingRepository.deleteById(meetingId);
             return ResponseEntity.status((HttpStatus.OK))
                     .body(JsonResponse.builder()
@@ -123,6 +123,26 @@ public class MeetingServiceImpl implements MeetingService {
                         .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_MEETING_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .build());
+    }
+
+    @Override
+    public ResponseEntity<Object> findAllMeetingByChapter(Long meetingId) {
+        List<Meeting> meetingList = meetingRepository.findAllMeetingIdByMeetingChapterId(meetingId);
+        if (meetingList.isEmpty())
+            return ResponseEntity.status((HttpStatus.BAD_REQUEST))
+                    .body(JsonResponse.builder()
+                            .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_MEETING_FOUND)
+                            .status(HttpStatus.BAD_REQUEST)
+                            .statusCode(HttpStatus.BAD_REQUEST.value())
+                            .build());
+
+        return ResponseEntity.status((HttpStatus.OK))
+                .body(JsonResponse.builder()
+                        .data(meetingList)
+                        .message(StringConstants.REQUEST_SUCCESS_MESSAGE_MEETING_FETCHED)
+                        .status(HttpStatus.OK)
+                        .statusCode(HttpStatus.OK.value())
                         .build());
     }
 }

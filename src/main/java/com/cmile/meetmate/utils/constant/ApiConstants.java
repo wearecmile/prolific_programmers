@@ -6,4 +6,9 @@ public class ApiConstants {
     public static final String REQUEST_MAPPING_KEY_MEETING = "/meeting";
     public static final String REQUEST_MAPPING_KEY_PAYMENT_HISTORY = "/payment-history";
     public static final String REQUEST_MAPPING_KEY_USER_CHAPTER = "/user-chapter";
+    public static final String REQUEST_MAPPING_KEY_FIND_CHAPTER_BY_USER = "/chapter-by-user/{id}";
+    public static final String REQUEST_MAPPING_KEY_FIND_USER_BY_CHAPTER = "/user-by-chapter/{id}";
+    public static final String REQUEST_MAPPING_KEY_FIND_ATTENDANCE_BY_MEETING_USER_ID = "/all-attendance-by-meeting/{id}";
+    public static final String REQUEST_MAPPING_KEY_FIND_ALL_MEETING_BY_CHAPTER_ID = "/all-meeting-by-chapter/{id}";
+    public static final String REQUEST_MAPPING_KEY_FIND_ALL_VISITORS_BY_MEETING = "/all-visitor-by-meeting/{id}";
 }

@@ -46,4 +46,6 @@ public class StringConstants {
     public static final String REQUEST_FAILURE_MESSAGE_USER_CHAPTER_NOT_UPDATED = "Failed to update User Chapter";
     public static final String REQUEST_FAILURE_MESSAGE_NO_USER_CHAPTER_FOUND = "No User Chapter found";
     public static final String REQUEST_SUCCESS_MESSAGE_USER_CHAPTER_RETRIEVED = "User Chapter Retrieved Successfully";
+    public static final String REQUEST_FAILURE_MESSAGE_NO_CHAPTER_FOUND_FOR_USER_ID = "No Chapters Found For User Id";
+    public static final String REQUEST_SUCCESS_MESSAGE_CHAPTER_FOUND_FOR_USER_ID = "Chapters Fetched For User Id Successfully";
 }

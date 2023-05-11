@@ -1,6 +1,5 @@
 package com.cmile.meetmate.service;
 
-import com.cmile.meetmate.entity.PaymentHistory;
 import com.cmile.meetmate.entity.UserChapter;
 import org.springframework.http.ResponseEntity;
 
@@ -14,4 +13,8 @@ public interface UserChapterService {
     ResponseEntity<Object> update(UserChapter userChapter);
 
     ResponseEntity<Object> delete(Long ucId);
+
+    ResponseEntity<Object> findAllUcUserId(Long ucUserId);
+
+    ResponseEntity<Object> findAllUcChapterId(Long ucChapterId);
 }
