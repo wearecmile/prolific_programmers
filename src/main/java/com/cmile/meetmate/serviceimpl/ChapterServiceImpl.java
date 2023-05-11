@@ -20,7 +20,7 @@ public class ChapterServiceImpl implements ChapterService {
 
     @Override
     public ResponseEntity<Object> findAll() {
-        List<Chapter> chapterList=chapterRepository.findAll();
+        List<Chapter> chapterList = chapterRepository.findAll();
         if (!chapterList.isEmpty())
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
@@ -77,12 +77,12 @@ public class ChapterServiceImpl implements ChapterService {
 
     @Override
     public ResponseEntity<Object> update(Chapter chapter) {
-        Optional<Chapter> optionalChapter=chapterRepository.findById(chapter.getChapterId());
+        Optional<Chapter> optionalChapter = chapterRepository.findById(chapter.getChapterId());
         if (optionalChapter.isPresent()) {
             Chapter updateChapter=optionalChapter.get();
             updateChapter.setChapterName(chapter.getChapterName());
             updateChapter.setChapterUpdatedDateTime(chapter.getChapterUpdatedDateTime());
-            updateChapter=chapterRepository.save(updateChapter);
+            chapterRepository.save(updateChapter);
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())

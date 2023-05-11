@@ -1,7 +1,6 @@
 package com.cmile.meetmate.controller;
 
 import com.cmile.meetmate.entity.Chapter;
-import com.cmile.meetmate.entity.Role;
 import com.cmile.meetmate.service.ChapterService;
 import com.cmile.meetmate.utils.constant.ApiConstant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +20,22 @@ public class ChapterController {
     }
 
     @GetMapping(ApiConstant.REQUEST_MAPPING_CHAPTER_ID)
-    public ResponseEntity<Object> findById(@PathVariable Long chapterId){return chapterService.findById(chapterId);}
+    public ResponseEntity<Object> findById(@PathVariable Long chapterId){
+        return chapterService.findById(chapterId);
+    }
 
     @PostMapping
-    public ResponseEntity<Object> save(@RequestBody Chapter chapter){return chapterService.save(chapter);}
+    public ResponseEntity<Object> save(@RequestBody Chapter chapter){
+        return chapterService.save(chapter);
+    }
 
     @PutMapping(ApiConstant.REQUEST_MAPPING_CHAPTER_ID)
-    public ResponseEntity<Object> update(@RequestBody Chapter chapter){return chapterService.update(chapter);}
+    public ResponseEntity<Object> update(@RequestBody Chapter chapter){
+        return chapterService.update(chapter);
+    }
 
     @DeleteMapping(ApiConstant.REQUEST_MAPPING_CHAPTER_ID)
-    public ResponseEntity<Object>delete(@PathVariable Long chapterId){return chapterService.delete(chapterId);}
+    public ResponseEntity<Object>delete(@PathVariable Long chapterId){
+        return chapterService.delete(chapterId);
+    }
 }

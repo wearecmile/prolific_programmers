@@ -20,15 +20,28 @@ public class UserController {
     }
 
     @GetMapping(ApiConstant.REQUEST_MAPPING_USER_ID)
-    public ResponseEntity<Object> findById(@PathVariable Long userId){return userService.findById(userId);}
+    public ResponseEntity<Object> findById(@PathVariable Long userId){
+        return userService.findById(userId);
+    }
 
     @PostMapping
-    public ResponseEntity<Object> save(@RequestBody User user){return userService.save(user);}
+    public ResponseEntity<Object> save(@RequestBody User user){
+        return userService.save(user);
+    }
 
     @PutMapping(ApiConstant.REQUEST_MAPPING_USER_ID)
-    public ResponseEntity<Object> update(@RequestBody User user){return userService.update(user);}
+    public ResponseEntity<Object> update(@RequestBody User user){
+        return userService.update(user);
+    }
 
     @DeleteMapping(ApiConstant.REQUEST_MAPPING_USER_ID)
-    public ResponseEntity<Object>delete(@PathVariable Long userId){return userService.delete(userId);}
+    public ResponseEntity<Object> delete(@PathVariable Long userId){
+        return userService.delete(userId);
+    }
+
+    @GetMapping(ApiConstant.REQUEST_MAPPING_KEY_ROLE_BY_ROLE_NAME)
+    public ResponseEntity<Object> findAllUserIdByUserRole(@PathVariable Long userRole){
+        return userService.findAllByUserRole(userRole);
+    }
 
 }

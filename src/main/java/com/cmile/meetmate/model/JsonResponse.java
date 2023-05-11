@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JsonResponse {
+
     private Object data;
     private String message;
     private Integer statusCode;

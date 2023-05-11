@@ -1,2 +1,4 @@
-package com.cmile.meetmate.utils;public class AppUtils {
+package com.cmile.meetmate.utils;
+
+public class AppUtils {
 }

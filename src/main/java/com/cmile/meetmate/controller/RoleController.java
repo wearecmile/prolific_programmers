@@ -20,14 +20,22 @@ public class RoleController {
     }
 
     @GetMapping(ApiConstant.REQUEST_MAPPING_ROLE_ID)
-    public ResponseEntity<Object> findById(@PathVariable Long roleId){return roleService.findById(roleId);}
+    public ResponseEntity<Object> findById(@PathVariable Long roleId){
+        return roleService.findById(roleId);
+    }
 
     @PostMapping
-    public ResponseEntity<Object> save(@RequestBody Role role){return roleService.save(role);}
+    public ResponseEntity<Object> save(@RequestBody Role role){
+        return roleService.save(role);
+    }
 
     @PutMapping(ApiConstant.REQUEST_MAPPING_ROLE_ID)
-    public ResponseEntity<Object> update(@RequestBody Role role){return roleService.update(role);}
+    public ResponseEntity<Object> update(@RequestBody Role role){
+        return roleService.update(role);
+    }
 
     @DeleteMapping(ApiConstant.REQUEST_MAPPING_ROLE_ID)
-    public ResponseEntity<Object>delete(@PathVariable Long roleId){return roleService.delete(roleId);}
+    public ResponseEntity<Object> delete(@PathVariable Long roleId){
+        return roleService.delete(roleId);
+    }
 }

@@ -14,4 +14,6 @@ public interface UserService {
     ResponseEntity<Object> update(User user);
 
     ResponseEntity<Object> delete(Long userId);
+
+    ResponseEntity<Object> findAllByUserRole(Long userRole);
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<Object> findAll() {
-        List<User> userList=userRepository.findAll();
+        List<User> userList = userRepository.findAll();
         if (!userList.isEmpty())
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
@@ -44,7 +45,7 @@ public class UserServiceImpl implements UserService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_SELECTED_USER_FETCHED +userId)
+                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_SELECTED_USER_FETCHED + userId)
                             .status(HttpStatus.OK)
                             .data(userOptional.get())
                             .build());
@@ -77,15 +78,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<Object> update(User user) {
-        Optional<User> optionalUser=userRepository.findById(user.getUserId());
+        Optional<User> optionalUser = userRepository.findById(user.getUserId());
         if (optionalUser.isPresent()) {
-            User updateUser=optionalUser.get();
+            User updateUser = optionalUser.get();
             updateUser.setUserName(user.getUserName());
-            updateUser.setUserContact(user.getUserName());
+            updateUser.setUserContact(user.getUserContact());
             updateUser.setUserOpeningBalance(user.getUserOpeningBalance());
             updateUser.setUserClosingBalance(user.getUserClosingBalance());
             updateUser.setUserUpdatedDateTime(user.getUserUpdatedDateTime());
-            updateUser=userRepository.save(updateUser);
+            userRepository.save(updateUser);
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
@@ -104,20 +105,39 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<Object> delete(Long userId) {
-            if (userRepository.findById(userId).isPresent()) {
-                userRepository.deleteById(userId);
-                return ResponseEntity.status(HttpStatus.OK).body(
-                        JsonResponse.builder()
-                                .statusCode(HttpStatus.OK.value())
-                                .message(StringConstant.REQUEST_SUCCESS_MESSAGE_USER_DELETED)
-                                .status(HttpStatus.OK)
-                                .build());
-            }
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+        if (userRepository.findById(userId).isPresent()) {
+            userRepository.deleteById(userId);
+            return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
-                            .statusCode(HttpStatus.BAD_REQUEST.value())
-                            .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
-                            .status(HttpStatus.BAD_REQUEST)
+                            .statusCode(HttpStatus.OK.value())
+                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_USER_DELETED)
+                            .status(HttpStatus.OK)
                             .build());
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                JsonResponse.builder()
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .status(HttpStatus.BAD_REQUEST)
+                        .build());
+    }
+
+    @Override
+    public ResponseEntity<Object> findAllByUserRole(Long userRole) {
+        List<User> userList = userRepository.findAllUserIdByUserRole(userRole);
+        if (!userList.isEmpty())
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    JsonResponse.builder()
+                            .statusCode(HttpStatus.OK.value())
+                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_USER_FETCHED)
+                            .status(HttpStatus.OK)
+                            .data(userList)
+                            .build());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                JsonResponse.builder()
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_BAD_REQUEST)
+                        .status(HttpStatus.BAD_REQUEST)
+                        .build());
     }
 }

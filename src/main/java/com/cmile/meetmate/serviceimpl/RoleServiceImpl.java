@@ -18,10 +18,9 @@ public class RoleServiceImpl implements RoleService {
     @Autowired
     RoleRepository roleRepository;
 
-
     @Override
     public ResponseEntity<Object> findAll() {
-        List<Role> roleList=roleRepository.findAll();
+        List<Role> roleList = roleRepository.findAll();
         if (!roleList.isEmpty())
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
@@ -78,12 +77,12 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public ResponseEntity<Object> update(Role role) {
-        Optional<Role> optionalRole=roleRepository.findById(role.getRoleId());
+        Optional<Role> optionalRole = roleRepository.findById(role.getRoleId());
         if (optionalRole.isPresent()) {
             Role updateRole=optionalRole.get();
             updateRole.setRoleName(role.getRoleName());
             updateRole.setRoleUpdatedDateTime(role.getRoleUpdatedDateTime());
-            updateRole=roleRepository.save(updateRole);
+            roleRepository.save(updateRole);
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
