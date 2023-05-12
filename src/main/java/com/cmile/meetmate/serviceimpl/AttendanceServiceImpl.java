@@ -59,7 +59,7 @@ public class AttendanceServiceImpl implements AttendanceService {
         }
         return ResponseEntity.status((HttpStatus.BAD_REQUEST))
                 .body(JsonResponse.builder()
-                        .message(StringConstants.REQUEST_SUCCESS_MESSAGE_ATTENDANCE_FETCHED)
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_ATTENDANCE_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
