@@ -24,7 +24,7 @@ public class User {
     @Column(name = "user_name")
     private String userName;
 
-    @Column(name = "user_contact")
+    @Column(name = "user_contact", unique = true)
     private String userContact;
 
     @Column(name = "user_role")
@@ -33,8 +33,8 @@ public class User {
     @Column(name = "user_opening_balance")
     private String userOpeningBalance;
 
-    @Column(name = "user_closing_balance")
-    private String userClosingBalance;
+    @Column(name = "user_current_balance")
+    private String userCurrentBalance;
 
     @CreationTimestamp
     @Column(name = "user_created_date_time", nullable = false, updatable = false)
