@@ -2,7 +2,34 @@ package com.cmile.meetmate.utils.constant;
 
 public class StringConstants {
 
-    //Swagger Constants
+    //User Controller
+    public static final String REQUEST_SUCCESS_MESSAGE_USER_CREATED = "User Created Successfully!!";
+    public static final String REQUEST_FAILURE_MESSAGE_USER_NOT_CREATED = "Failed to Create User";
+    public static final String REQUEST_SUCCESS_MESSAGE_USER_UPDATED = "User Updated Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_USER_DELETED = "User Deleted Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_USER_FETCHED = "User Fetched Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_SELECTED_USER_FETCHED = "Fetched User by id: ";
+    public static final String REQUEST_FAILURE_MESSAGE_NO_USER_FOUND = "No User Found";
+
+    //Role Controller
+    public static final String REQUEST_SUCCESS_MESSAGE_ROLE_CREATED = "Role Created Successfully!!";
+    public static final String REQUEST_FAILURE_MESSAGE_ROLE_NOT_CREATED = "Failed to Create Role";
+    public static final String REQUEST_SUCCESS_MESSAGE_ROLE_UPDATED = "Role Updated Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_ROLE_DELETED = "Role Deleted Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_ROLE_FETCHED = "Role Fetched Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_SELECTED_ROLE_FETCHED = "Fetched Role by id: ";
+    public static final String REQUEST_FAILURE_MESSAGE_NO_ROLE_FOUND = "No Role Found";
+
+    //Chapter Controller
+    public static final String REQUEST_SUCCESS_MESSAGE_CHAPTER_CREATED = "Chapter Created Successfully!!";
+    public static final String REQUEST_FAILURE_MESSAGE_CHAPTER_NOT_CREATED = "Failed to Create Chapter";
+    public static final String REQUEST_SUCCESS_MESSAGE_CHAPTER_UPDATED = "Chapter Updated Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_CHAPTER_DELETED = "Chapter Deleted Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_CHAPTER_FETCHED = "Chapter Fetched Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_SELECTED_CHAPTER_FETCHED = "Fetched Chapter by id: ";
+    public static final String REQUEST_FAILURE_MESSAGE_NO_CHAPTER_FOUND = "No Chapter Found";
+
+    //Swagger Constant
     public static final String TEXT_SWAGGER_TITLE = "All meet mate APIs";
     public static final String TEXT_SWAGGER_DESC = "REST APIs reference for developers";
     public static final String TEXT_SWAGGER_CONTACT_EMAIL = "cmile@gmail.com";
@@ -10,6 +37,7 @@ public class StringConstants {
     public static final String TEXT_APP_NAME = "meet mate";
     public static final String TEXT_SWAGGER_API_VERSION = "1.0";
     public static final String TEXT_SWAGGER_REGEX_PATH = "/*.*";
+
     //Attendance Controller
     public static final String REQUEST_SUCCESS_MESSAGE_ATTENDANCE_CREATED = "Attendance created successfully";
     public static final String REQUEST_SUCCESS_MESSAGE_ATTENDANCE_FETCHED = "Attendance fetched successfully";
@@ -38,5 +66,6 @@ public class StringConstants {
     public static final String REQUEST_SUCCESS_MESSAGE_USER_CHAPTER_UPDATED = "User Chapter updated successfully";
     public static final String REQUEST_FAILURE_MESSAGE_USER_CHAPTER_NOT_CREATED = "Failed to create User Chapter";
     public static final String REQUEST_FAILURE_MESSAGE_NO_USER_CHAPTER_FOUND = "No User Chapter found";
+
 
 }
