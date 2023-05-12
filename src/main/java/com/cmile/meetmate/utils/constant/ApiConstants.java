@@ -1,6 +1,6 @@
 package com.cmile.meetmate.utils.constant;
 
-public class ApiConstant {
+public class ApiConstants {
 
     public static final String REQUEST_MAPPING_KEY_USER = "/user";
     public static final String REQUEST_MAPPING_KEY_ROLE = "/role";

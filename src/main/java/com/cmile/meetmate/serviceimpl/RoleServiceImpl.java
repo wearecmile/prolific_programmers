@@ -4,7 +4,7 @@ import com.cmile.meetmate.entity.Role;
 import com.cmile.meetmate.model.JsonResponse;
 import com.cmile.meetmate.repository.RoleRepository;
 import com.cmile.meetmate.service.RoleService;
-import com.cmile.meetmate.utils.constant.StringConstant;
+import com.cmile.meetmate.utils.constant.StringConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,14 +26,14 @@ public class RoleServiceImpl implements RoleService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_ROLE_FETCHED)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_ROLE_FETCHED)
                             .status(HttpStatus.OK)
                             .data(roleList)
                             .build());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_ROLE_FOUND)
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_ROLE_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -45,14 +45,14 @@ public class RoleServiceImpl implements RoleService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_SELECTED_ROLE_FETCHED + roleId)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_SELECTED_ROLE_FETCHED + roleId)
                             .status(HttpStatus.OK)
                             .data(roleOptional.get())
                             .build());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_ROLE_FOUND)
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_ROLE_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -64,14 +64,14 @@ public class RoleServiceImpl implements RoleService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_ROLE_CREATED)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_ROLE_CREATED)
                             .status(HttpStatus.OK)
                             .data(savedRole)
                             .build());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_ROLE_NOT_CREATED)
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_ROLE_NOT_CREATED)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -87,7 +87,7 @@ public class RoleServiceImpl implements RoleService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_ROLE_UPDATED)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_ROLE_UPDATED)
                             .status(HttpStatus.OK)
                             .data(optionalRole)
                             .build());
@@ -95,7 +95,7 @@ public class RoleServiceImpl implements RoleService {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_ROLE_FOUND)
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_ROLE_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -107,14 +107,14 @@ public class RoleServiceImpl implements RoleService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_ROLE_DELETED)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_ROLE_DELETED)
                             .status(HttpStatus.OK)
                             .build());
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_ROLE_FOUND)
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_ROLE_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }

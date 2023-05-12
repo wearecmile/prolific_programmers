@@ -1,6 +1,6 @@
 package com.cmile.meetmate.config;
 
-import com.cmile.meetmate.utils.constant.StringConstant;
+import com.cmile.meetmate.utils.constant.StringConstants;
 import com.google.common.base.Predicate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,16 +22,16 @@ import static springfox.documentation.builders.PathSelectors.regex;
 public class SwaggerConfig {
 
     private Predicate<String> postPaths() {
-        return or(regex(StringConstant.TEXT_SWAGGER_REGEX_PATH));
+        return or(regex(StringConstants.TEXT_SWAGGER_REGEX_PATH));
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title(StringConstant.TEXT_SWAGGER_TITLE)
-                .description(StringConstant.TEXT_SWAGGER_DESC)
-                .contact(StringConstant.TEXT_SWAGGER_CONTACT_EMAIL)
-                .license(StringConstant.TEXT_APP_NAME)
-                .licenseUrl(StringConstant.TEXT_SWAGGER_LICENCE)
-                .version(StringConstant.TEXT_SWAGGER_API_VERSION)
+        return new ApiInfoBuilder().title(StringConstants.TEXT_SWAGGER_TITLE)
+                .description(StringConstants.TEXT_SWAGGER_DESC)
+                .contact(StringConstants.TEXT_SWAGGER_CONTACT_EMAIL)
+                .license(StringConstants.TEXT_APP_NAME)
+                .licenseUrl(StringConstants.TEXT_SWAGGER_LICENCE)
+                .version(StringConstants.TEXT_SWAGGER_API_VERSION)
                 .build();
     }
 

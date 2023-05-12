@@ -1,6 +1,6 @@
 package com.cmile.meetmate.utils.constant;
 
-public class StringConstant {
+public class StringConstants {
 
     //User Controller
     public static final String REQUEST_SUCCESS_MESSAGE_USER_CREATED = "User Created Successfully!!";

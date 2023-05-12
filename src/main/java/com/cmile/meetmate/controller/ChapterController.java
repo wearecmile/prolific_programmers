@@ -2,13 +2,13 @@ package com.cmile.meetmate.controller;
 
 import com.cmile.meetmate.entity.Chapter;
 import com.cmile.meetmate.service.ChapterService;
-import com.cmile.meetmate.utils.constant.ApiConstant;
+import com.cmile.meetmate.utils.constant.ApiConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = ApiConstant.REQUEST_MAPPING_KEY_CHAPTER)
+@RequestMapping(value = ApiConstants.REQUEST_MAPPING_KEY_CHAPTER)
 public class ChapterController {
 
     @Autowired
@@ -19,7 +19,7 @@ public class ChapterController {
         return chapterService.findAll();
     }
 
-    @GetMapping(ApiConstant.REQUEST_MAPPING_KEY_ID)
+    @GetMapping(ApiConstants.REQUEST_MAPPING_KEY_ID)
     public ResponseEntity<Object> findById(@PathVariable Long id) {
         return chapterService.findById(id);
     }
@@ -34,7 +34,7 @@ public class ChapterController {
         return chapterService.update(chapter);
     }
 
-    @DeleteMapping(ApiConstant.REQUEST_MAPPING_KEY_ID)
+    @DeleteMapping(ApiConstants.REQUEST_MAPPING_KEY_ID)
     public ResponseEntity<Object> delete(@PathVariable Long id) {
         return chapterService.delete(id);
     }

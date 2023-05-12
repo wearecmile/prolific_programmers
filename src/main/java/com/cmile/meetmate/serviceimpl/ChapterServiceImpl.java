@@ -4,7 +4,7 @@ import com.cmile.meetmate.entity.Chapter;
 import com.cmile.meetmate.model.JsonResponse;
 import com.cmile.meetmate.repository.ChapterRepository;
 import com.cmile.meetmate.service.ChapterService;
-import com.cmile.meetmate.utils.constant.StringConstant;
+import com.cmile.meetmate.utils.constant.StringConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,14 +26,14 @@ public class ChapterServiceImpl implements ChapterService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_CHAPTER_FETCHED)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_CHAPTER_FETCHED)
                             .status(HttpStatus.OK)
                             .data(chapterList)
                             .build());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_CHAPTER_FOUND)
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_CHAPTER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -45,14 +45,14 @@ public class ChapterServiceImpl implements ChapterService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_SELECTED_CHAPTER_FETCHED + chapterId)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_SELECTED_CHAPTER_FETCHED + chapterId)
                             .status(HttpStatus.OK)
                             .data(chapterOptional.get())
                             .build());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_CHAPTER_FOUND)
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_CHAPTER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -64,14 +64,14 @@ public class ChapterServiceImpl implements ChapterService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_CHAPTER_CREATED)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_CHAPTER_CREATED)
                             .status(HttpStatus.OK)
                             .data(savedChapter)
                             .build());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_CHAPTER_NOT_CREATED)
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_CHAPTER_NOT_CREATED)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -87,7 +87,7 @@ public class ChapterServiceImpl implements ChapterService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_CHAPTER_UPDATED)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_CHAPTER_UPDATED)
                             .status(HttpStatus.OK)
                             .data(optionalChapter)
                             .build());
@@ -95,7 +95,7 @@ public class ChapterServiceImpl implements ChapterService {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_CHAPTER_FOUND)
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_CHAPTER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -107,14 +107,14 @@ public class ChapterServiceImpl implements ChapterService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_CHAPTER_DELETED)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_CHAPTER_DELETED)
                             .status(HttpStatus.OK)
                             .build());
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_CHAPTER_FOUND)
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_CHAPTER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }

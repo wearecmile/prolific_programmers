@@ -4,7 +4,7 @@ import com.cmile.meetmate.entity.User;
 import com.cmile.meetmate.model.JsonResponse;
 import com.cmile.meetmate.repository.UserRepository;
 import com.cmile.meetmate.service.UserService;
-import com.cmile.meetmate.utils.constant.StringConstant;
+import com.cmile.meetmate.utils.constant.StringConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,14 +26,14 @@ public class UserServiceImpl implements UserService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_USER_FETCHED)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_FETCHED)
                             .status(HttpStatus.OK)
                             .data(userList)
                             .build());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_USER_FOUND)
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_USER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -45,14 +45,14 @@ public class UserServiceImpl implements UserService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_SELECTED_USER_FETCHED + userId)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_SELECTED_USER_FETCHED + userId)
                             .status(HttpStatus.OK)
                             .data(userOptional.get())
                             .build());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_USER_FOUND)
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_USER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.BAD_REQUEST.value())
-                            .message(StringConstant.REQUEST_FAILURE_MESSAGE_USER_NOT_CREATED)
+                            .message(StringConstants.REQUEST_FAILURE_MESSAGE_USER_NOT_CREATED)
                             .status(HttpStatus.BAD_REQUEST)
                             .build());
         } else {
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
                 return ResponseEntity.status(HttpStatus.OK).body(
                         JsonResponse.builder()
                                 .statusCode(HttpStatus.OK.value())
-                                .message(StringConstant.REQUEST_SUCCESS_MESSAGE_USER_CREATED)
+                                .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_CREATED)
                                 .status(HttpStatus.OK)
                                 .data(savedUser)
                                 .build());
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.BAD_REQUEST.value())
-                            .message(StringConstant.REQUEST_FAILURE_MESSAGE_USER_NOT_CREATED)
+                            .message(StringConstants.REQUEST_FAILURE_MESSAGE_USER_NOT_CREATED)
                             .status(HttpStatus.BAD_REQUEST)
                             .build());
         }
@@ -96,13 +96,12 @@ public class UserServiceImpl implements UserService {
             updateUser.setUserContact(user.getUserContact());
             updateUser.setUserRole(user.getUserRole());
             updateUser.setUserOpeningBalance(user.getUserOpeningBalance());
-            updateUser.setUserCurrentBalance(user.getUserCurrentBalance());
             updateUser.setUserUpdatedDateTime(user.getUserUpdatedDateTime());
             userRepository.save(updateUser);
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_USER_UPDATED)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_UPDATED)
                             .status(HttpStatus.OK)
                             .data(optionalUser)
                             .build());
@@ -110,7 +109,7 @@ public class UserServiceImpl implements UserService {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_USER_FOUND)
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_USER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -122,14 +121,14 @@ public class UserServiceImpl implements UserService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_USER_DELETED)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_DELETED)
                             .status(HttpStatus.OK)
                             .build());
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_USER_FOUND)
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_USER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
@@ -141,14 +140,14 @@ public class UserServiceImpl implements UserService {
             return ResponseEntity.status(HttpStatus.OK).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.OK.value())
-                            .message(StringConstant.REQUEST_SUCCESS_MESSAGE_USER_FETCHED)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_FETCHED)
                             .status(HttpStatus.OK)
                             .data(userList)
                             .build());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 JsonResponse.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstant.REQUEST_FAILURE_MESSAGE_NO_USER_FOUND)
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_USER_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .build());
     }
