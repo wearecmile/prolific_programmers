@@ -4,6 +4,7 @@ import com.cmile.meetmate.entity.UserChapter;
 import org.springframework.http.ResponseEntity;
 
 public interface UserChapterService {
+
     ResponseEntity<Object> findAll();
 
     ResponseEntity<Object> findById(Long ucId);

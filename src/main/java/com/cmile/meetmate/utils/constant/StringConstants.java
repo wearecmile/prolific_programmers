@@ -45,6 +45,7 @@ public class StringConstants {
     public static final String REQUEST_SUCCESS_MESSAGE_ATTENDANCE_UPDATED = "Attendance updated successfully";
     public static final String REQUEST_FAILURE_MESSAGE_ATTENDANCE_NOT_CREATED = "Failed to create Attendance";
     public static final String REQUEST_FAILURE_MESSAGE_NO_ATTENDANCE_FOUND = "No Attendance found";
+
     //Meeting Controller
     public static final String REQUEST_SUCCESS_MESSAGE_MEETING_CREATED = "Meeting created successfully";
     public static final String REQUEST_SUCCESS_MESSAGE_MEETING_FETCHED = "Meeting fetched successfully";
@@ -52,6 +53,7 @@ public class StringConstants {
     public static final String REQUEST_SUCCESS_MESSAGE_MEETING_UPDATED = "Meeting updated successfully";
     public static final String REQUEST_FAILURE_MESSAGE_MEETING_NOT_CREATED = "Failed to create Meeting";
     public static final String REQUEST_FAILURE_MESSAGE_NO_MEETING_FOUND = "No Meeting found";
+
     //Payment History Controller
     public static final String REQUEST_SUCCESS_MESSAGE_PAYMENT_HISTORY_CREATED = "Payment History created successfully";
     public static final String REQUEST_SUCCESS_MESSAGE_PAYMENT_HISTORY_FETCHED = "Payment History fetched successfully";
@@ -59,6 +61,7 @@ public class StringConstants {
     public static final String REQUEST_SUCCESS_MESSAGE_PAYMENT_HISTORY_UPDATED = "Payment History updated successfully";
     public static final String REQUEST_FAILURE_MESSAGE_PAYMENT_HISTORY_NOT_CREATED = "Failed to create Payment History";
     public static final String REQUEST_FAILURE_MESSAGE_NO_PAYMENT_HISTORY_FOUND = "No Payment History found";
+
     //User Chapter Controller
     public static final String REQUEST_SUCCESS_MESSAGE_USER_CHAPTER_CREATED = "User Chapter created successfully";
     public static final String REQUEST_SUCCESS_MESSAGE_USER_CHAPTER_FETCHED = "User Chapter fetched successfully";
@@ -66,6 +69,5 @@ public class StringConstants {
     public static final String REQUEST_SUCCESS_MESSAGE_USER_CHAPTER_UPDATED = "User Chapter updated successfully";
     public static final String REQUEST_FAILURE_MESSAGE_USER_CHAPTER_NOT_CREATED = "Failed to create User Chapter";
     public static final String REQUEST_FAILURE_MESSAGE_NO_USER_CHAPTER_FOUND = "No User Chapter found";
-
 
 }
