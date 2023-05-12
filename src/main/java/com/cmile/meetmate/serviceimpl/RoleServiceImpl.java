@@ -1,7 +1,7 @@
 package com.cmile.meetmate.serviceimpl;
 
 import com.cmile.meetmate.entity.Role;
-import com.cmile.meetmate.model.JsonResponse;
+import com.cmile.meetmate.models.JsonResponse;
 import com.cmile.meetmate.repository.RoleRepository;
 import com.cmile.meetmate.service.RoleService;
 import com.cmile.meetmate.utils.constant.StringConstants;

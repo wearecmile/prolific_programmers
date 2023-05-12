@@ -1,7 +1,7 @@
 package com.cmile.meetmate.serviceimpl;
 
 import com.cmile.meetmate.entity.Chapter;
-import com.cmile.meetmate.model.JsonResponse;
+import com.cmile.meetmate.models.JsonResponse;
 import com.cmile.meetmate.repository.ChapterRepository;
 import com.cmile.meetmate.service.ChapterService;
 import com.cmile.meetmate.utils.constant.StringConstants;

@@ -18,6 +18,7 @@ import java.util.Optional;
 
 @Service
 public class AttendanceServiceImpl implements AttendanceService {
+
     @Autowired
     AttendanceRepository attendanceRepository;
 

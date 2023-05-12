@@ -16,6 +16,7 @@ import java.util.Date;
 @Entity
 @Table(name = "payment_history")
 public class PaymentHistory {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ph_id")

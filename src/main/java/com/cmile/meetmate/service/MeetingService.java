@@ -4,6 +4,7 @@ import com.cmile.meetmate.entity.Meeting;
 import org.springframework.http.ResponseEntity;
 
 public interface MeetingService {
+
     ResponseEntity<Object> findAll();
 
     ResponseEntity<Object> findById(Long meetingId);
