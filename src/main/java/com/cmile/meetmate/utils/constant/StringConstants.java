@@ -70,4 +70,10 @@ public class StringConstants {
     public static final String REQUEST_FAILURE_MESSAGE_USER_CHAPTER_NOT_CREATED = "Failed to create User Chapter";
     public static final String REQUEST_FAILURE_MESSAGE_NO_USER_CHAPTER_FOUND = "No User Chapter found";
 
+    //Auth
+    public static final String CUSTOM_ROLE_STRING_CONSTANT = "custom_claims";
+    public static final String REQUEST_FAILURE_MESSAGE_UNAUTHORIZED_TOKEN = "Unauthorized token found";
+    public static final String REQUEST_FAILURE_MESSAGE_AUTHENTICATION_FAILED = "Entered User doesn't have required permission.Please contact Admin!";
+    public static final String REQUEST_SUCCESS_MESSAGE_AUTH_SUCCESS = "Auth successful!!";
+
 }

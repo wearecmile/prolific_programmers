@@ -12,10 +12,9 @@ public class ApiConstants {
     public static final String REQUEST_MAPPING_KEY_FIND_ATTENDANCE_BY_MEETING_USER_ID = "/all-attendance-by-meeting/{id}";
     public static final String REQUEST_MAPPING_KEY_FIND_ALL_MEETING_BY_CHAPTER_ID = "/all-meeting-by-chapter/{id}";
     public static final String REQUEST_MAPPING_KEY_FIND_ALL_VISITORS_BY_MEETING = "/all-visitor-by-meeting/{id}";
-
     public static final String REQUEST_MAPPING_KEY_USER = "/user";
     public static final String REQUEST_MAPPING_KEY_ROLE = "/role";
     public static final String REQUEST_MAPPING_KEY_CHAPTER = "/chapter";
     public static final String REQUEST_MAPPING_KEY_ROLE_BY_ROLE_NAME = "/role-name/{userRole}";
-
+    public static final String REQUEST_MAPPING_KEY_AUTH = "/auth";
 }
