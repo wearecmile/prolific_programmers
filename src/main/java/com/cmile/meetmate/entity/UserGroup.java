@@ -1,12 +1,12 @@
 package com.cmile.meetmate.entity;
 
+import com.cmile.meetmate.enums.RoleEnum;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 @Data
 @Builder
@@ -21,13 +21,17 @@ public class UserGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ug_id")
-    private Long userGroupId;
+    private Long ugId;
 
     @Column(name = "ug_group_id")
     private Long ugGroupId;
 
     @Column(name = "ug_user_id")
     private Long ugUserId;
+
+    @Column(name = "ug_role_name")
+    @Enumerated(EnumType.STRING)
+    private RoleEnum ugRoleName;
 
     @CreationTimestamp
     @Column(name = "ug_created_date_time", nullable = false, updatable = false)
@@ -37,11 +41,11 @@ public class UserGroup {
     @Column(name = "ug_updated_date_time")
     private Date ugUpdatedDateTime = new Date();
 
-    @OneToMany
-    @JoinColumn(name = "ug_group_id",insertable = false,updatable = false)
-    private Set<Group> groups;
+    @ManyToOne
+    @JoinColumn(name = "ug_group_id", insertable = false, updatable = false)
+    private Group group;
 
-    @OneToMany
-    @JoinColumn(name = "ug_user_id",insertable = false,updatable = false)
-    private Set<User> users;
+    @ManyToOne
+    @JoinColumn(name = "ug_user_id", insertable = false, updatable = false)
+    private User user;
 }

@@ -3,7 +3,6 @@ package com.cmile.meetmate.service;
 import com.cmile.meetmate.entity.Attendance;
 import org.springframework.http.ResponseEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface AttendanceService {

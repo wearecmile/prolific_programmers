@@ -11,6 +11,24 @@ public class StringConstants {
     public static final String REQUEST_SUCCESS_MESSAGE_SELECTED_USER_FETCHED = "Fetched User by id: ";
     public static final String REQUEST_FAILURE_MESSAGE_NO_USER_FOUND = "No User Found";
 
+    //Group Controller
+    public static final String REQUEST_SUCCESS_MESSAGE_GROUP_CREATED = "Group Created Successfully!!";
+    public static final String REQUEST_FAILURE_MESSAGE_GROUP_NOT_CREATED = "Failed to Create Group";
+    public static final String REQUEST_SUCCESS_MESSAGE_GROUP_UPDATED = "Group Updated Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_GROUP_DELETED = "Group Deleted Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_GROUP_FETCHED = "Group Fetched Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_SELECTED_GROUP_FETCHED = "Fetched Group by id: ";
+    public static final String REQUEST_FAILURE_MESSAGE_NO_GROUP_FOUND = "No Group Found";
+
+    //User Group Controller
+    public static final String REQUEST_SUCCESS_MESSAGE_USER_GROUP_CREATED = "User Group Created Successfully!!";
+    public static final String REQUEST_FAILURE_MESSAGE_USER_GROUP_NOT_CREATED = "Failed to Create User Group";
+    public static final String REQUEST_SUCCESS_MESSAGE_USER_GROUP_UPDATED = "User Group Updated Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_USER_GROUP_DELETED = "User Group Deleted Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_USER_GROUP_FETCHED = "User Group Fetched Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_SELECTED_USER_GROUP_FETCHED = "Fetched User Group by id: ";
+    public static final String REQUEST_FAILURE_MESSAGE_NO_USER_GROUP_FOUND = "No User Group Found";
+
     //Role Controller
     public static final String REQUEST_SUCCESS_MESSAGE_ROLE_CREATED = "Role Created Successfully!!";
     public static final String REQUEST_FAILURE_MESSAGE_ROLE_NOT_CREATED = "Failed to Create Role";
