@@ -1,7 +1,9 @@
 package com.cmile.meetmate.enums;
 
-public enum RoleEnum {
-    ADMIN,
+public enum ChapterRoles {
+
+    CAPTAIN,
     USER,
+    MEMBER,
     VISITOR
 }

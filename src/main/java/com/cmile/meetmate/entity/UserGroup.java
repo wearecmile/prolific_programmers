@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Data
 @Builder
@@ -25,7 +26,7 @@ public class UserGroup {
     @Column(name = "ug_group_id")
     private Long ugGroupId;
 
-    @Column(name = "user_id")
+    @Column(name = "ug_user_id")
     private Long ugUserId;
 
     @CreationTimestamp
@@ -35,4 +36,12 @@ public class UserGroup {
     @UpdateTimestamp
     @Column(name = "ug_updated_date_time")
     private Date ugUpdatedDateTime = new Date();
+
+    @OneToMany
+    @JoinColumn(name = "ug_group_id",insertable = false,updatable = false)
+    private Set<Group> groups;
+
+    @OneToMany
+    @JoinColumn(name = "ug_user_id",insertable = false,updatable = false)
+    private Set<User> users;
 }

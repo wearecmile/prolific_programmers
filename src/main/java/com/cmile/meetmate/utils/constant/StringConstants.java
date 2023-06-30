@@ -40,6 +40,7 @@ public class StringConstants {
 
     //Attendance Controller
     public static final String REQUEST_SUCCESS_MESSAGE_ATTENDANCE_CREATED = "Attendance created successfully";
+    public static final String REQUEST_SUCCESS_MESSAGE_MULTIPLE_ATTENDANCE_CREATED = "Multiple Attendance created successfully";
     public static final String REQUEST_SUCCESS_MESSAGE_ATTENDANCE_FETCHED = "Attendance fetched successfully";
     public static final String REQUEST_SUCCESS_MESSAGE_ATTENDANCE_DELETED = "Attendance deleted successfully";
     public static final String REQUEST_SUCCESS_MESSAGE_ATTENDANCE_UPDATED = "Attendance updated successfully";

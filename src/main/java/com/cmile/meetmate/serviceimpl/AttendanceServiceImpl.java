@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -87,6 +88,28 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
+    public ResponseEntity<Object> saveMultiple(List<Attendance> attendance) {
+        List<Attendance> attendanceList = new ArrayList<>();
+        attendanceList = attendanceRepository.saveAll(attendance);
+        if (!attendanceList.isEmpty()) {
+            return ResponseEntity.status((HttpStatus.OK))
+                    .body(JsonResponse.builder()
+                            .data(attendanceList)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_MULTIPLE_ATTENDANCE_CREATED)
+                            .status(HttpStatus.OK)
+                            .statusCode(HttpStatus.OK.value())
+                            .build());
+        } else {
+            return ResponseEntity.status((HttpStatus.BAD_REQUEST))
+                    .body(JsonResponse.builder()
+                            .message(StringConstants.REQUEST_FAILURE_MESSAGE_ATTENDANCE_NOT_CREATED)
+                            .status(HttpStatus.BAD_REQUEST)
+                            .statusCode(HttpStatus.BAD_REQUEST.value())
+                            .build());
+        }
+    }
+
+    @Override
     public ResponseEntity<Object> update(Attendance attendance) {
         Optional<Attendance> optionalAttendance = attendanceRepository.findById(attendance.getAttendanceId());
         if (optionalAttendance.isPresent()) {
@@ -153,7 +176,8 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public ResponseEntity<Object> getAllVisitorByMeeting(Long meetingId) {
-        Optional<Role> role = roleRepository.findByRoleName(RoleEnum.VISITOR);
+        Optional<Role> role = roleRepository.
+                findByRoleName(RoleEnum.VISITOR);
         if (!role.isPresent()) {
             return ResponseEntity.status((HttpStatus.BAD_REQUEST))
                     .body(JsonResponse.builder()

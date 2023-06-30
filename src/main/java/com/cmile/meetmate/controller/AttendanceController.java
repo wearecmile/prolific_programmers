@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = ApiConstants.REQUEST_MAPPING_KEY_ATTENDANCE)
 public class AttendanceController {
@@ -16,6 +18,11 @@ public class AttendanceController {
     @PostMapping
     public ResponseEntity<Object> save(@RequestBody Attendance attendance) {
         return attendanceService.save(attendance);
+    }
+
+    @PostMapping(ApiConstants.REQUEST_MAPPING_KEY_SAVE_ALL_ATTENDANCE)
+    public ResponseEntity<Object> saveMultiple(@RequestBody List<Attendance> attendance) {
+        return attendanceService.saveMultiple(attendance);
     }
 
     @GetMapping
