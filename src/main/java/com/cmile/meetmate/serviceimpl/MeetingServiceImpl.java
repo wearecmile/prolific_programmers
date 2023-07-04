@@ -84,17 +84,10 @@ public class MeetingServiceImpl implements MeetingService {
     public ResponseEntity<Object> update(Meeting meeting) {
         Optional<Meeting> optionalMeeting = meetingRepository.findById(meeting.getMeetingId());
         if (optionalMeeting.isPresent()) {
-            Meeting updateMeeting = optionalMeeting.get();
-            updateMeeting.setMeetingCost(meeting.getMeetingCost());
-            updateMeeting.setMeetingDate(meeting.getMeetingDate());
-            updateMeeting.setMeetingNote(meeting.getMeetingNote());
-            updateMeeting.setMeetingTime(meeting.getMeetingTime());
-            updateMeeting.setMeetingUpdatedDateTime(meeting.getMeetingUpdatedDateTime());
-            updateMeeting.setMeetingTitle(meeting.getMeetingTitle());
-            meetingRepository.save(updateMeeting);
+            Meeting updatedMeeting = meetingRepository.save(meeting);
             return ResponseEntity.status((HttpStatus.OK))
                     .body(JsonResponse.builder()
-                            .data(optionalMeeting)
+                            .data(updatedMeeting)
                             .message(StringConstants.REQUEST_SUCCESS_MESSAGE_MEETING_UPDATED)
                             .status(HttpStatus.OK)
                             .statusCode(HttpStatus.OK.value())

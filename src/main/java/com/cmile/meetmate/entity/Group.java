@@ -2,6 +2,7 @@ package com.cmile.meetmate.entity;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ import java.util.Date;
 @Setter
 @Entity
 @Table(name = "groups")
+@SQLDelete(sql = "update groups set group_is_active = false where group_id = ?")
 public class Group {
 
     @Id

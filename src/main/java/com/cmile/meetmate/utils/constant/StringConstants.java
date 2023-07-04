@@ -55,6 +55,7 @@ public class StringConstants {
     public static final String REQUEST_SUCCESS_MESSAGE_GROUP_SETTINGS_FETCHED = "Group Settings Fetched Successfully!!";
     public static final String REQUEST_SUCCESS_MESSAGE_SELECTED_GROUP_SETTINGS_FETCHED = "Fetched Group Settings by id: ";
     public static final String REQUEST_FAILURE_MESSAGE_NO_GROUP_SETTINGS_FOUND = "No Group Settings Found";
+    public static final String REQUEST_FAILURE_MESSAGE_SETTING_ALREADY_PRESENT = "Group settings already exists for group id: ";
 
     //Swagger Constant
     public static final String TEXT_SWAGGER_TITLE = "All meet mate APIs";

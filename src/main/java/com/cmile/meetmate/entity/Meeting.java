@@ -45,11 +45,11 @@ public class Meeting {
     @Column(name = "meeting_updated_date_time")
     private Date meetingUpdatedDateTime = new Date();
 
-    @Column(name = "meeting_groups_id")
+    @Column(name = "meeting_group_id")
     private Long meetingGroupId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "meeting_groups_id", insertable = false, updatable = false)
-//    private Groups groups;
+    @ManyToOne
+    @JoinColumn(name = "meeting_group_id", insertable = false, updatable = false)
+    private Group group;
 
 }

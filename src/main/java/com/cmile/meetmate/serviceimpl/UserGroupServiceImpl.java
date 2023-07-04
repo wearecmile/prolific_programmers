@@ -65,7 +65,7 @@ public class UserGroupServiceImpl implements UserGroupService {
 
     @Override
     public ResponseEntity<Object> save(UserGroup userGroup) {
-        UserGroup userGroupExists = userGroupRepository.findByUgUserIdAndUgGroupId(userGroup.getUgUserId(), userGroup.getUgGroupsId());
+        UserGroup userGroupExists = userGroupRepository.findByUgUserIdAndUgGroupId(userGroup.getUgUserId(), userGroup.getUgGroupId());
         if(userGroupExists!=null)
             userGroup.setUgId(userGroupExists.getUgId());
         userGroup = userGroupRepository.save(userGroup);
@@ -90,15 +90,11 @@ public class UserGroupServiceImpl implements UserGroupService {
     public ResponseEntity<Object> update(UserGroup userGroup) {
         Optional<UserGroup> optionalUserGroup = userGroupRepository.findById(userGroup.getUgId());
         if (optionalUserGroup.isPresent()) {
-            UserGroup updateUserGroup = optionalUserGroup.get();
-            updateUserGroup.setUgGroupsId(userGroup.getUgGroupsId());
-            updateUserGroup.setUgUserId(userGroup.getUgUserId());
-            updateUserGroup.setUgRoleName(userGroup.getUgRoleName());
-            updateUserGroup.setUgUpdatedDateTime(userGroup.getUgUpdatedDateTime());
+            UserGroup updateUserGroup = userGroupRepository.save(userGroup);
             userGroupRepository.save(updateUserGroup);
             return ResponseEntity.status((HttpStatus.OK))
                     .body(JsonResponse.builder()
-                            .data(optionalUserGroup)
+                            .data(updateUserGroup)
                             .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_GROUP_UPDATED)
                             .status(HttpStatus.OK)
                             .statusCode(HttpStatus.OK.value())
@@ -193,7 +189,7 @@ public class UserGroupServiceImpl implements UserGroupService {
 
 //    @Override
 //    public ResponseEntity<Object> findAllByGroup(Long groupId) {
-//        List<UserGroup> userGroupList = userGroupRepository.findAllByUgGroupsId(groupId);
+//        List<UserGroup> userGroupList = userGroupRepository.findAllByUgGroupId(groupId);
 //        if (userGroupList.isEmpty())
 //            return ResponseEntity.status((HttpStatus.BAD_REQUEST))
 //                    .body(JsonResponse.builder()
@@ -213,7 +209,7 @@ public class UserGroupServiceImpl implements UserGroupService {
 
     @Override
     public ResponseEntity<Object> findByGroupAndRole(Long groupId, RoleEnum roleName) {
-        List<UserGroup> userGroupList = userGroupRepository.findAllByUgGroupsIdAndUgRoleName(groupId, roleName);
+        List<UserGroup> userGroupList = userGroupRepository.findAllByUgGroupIdAndUgRoleName(groupId, roleName);
         if (userGroupList.isEmpty())
             return ResponseEntity.status((HttpStatus.BAD_REQUEST))
                     .body(JsonResponse.builder()
@@ -231,8 +227,8 @@ public class UserGroupServiceImpl implements UserGroupService {
     }
 
     @Override
-    public ResponseEntity<Object> makeCaptain(UserGroup userGroup) {
-        Optional<UserGroup> optionalUserGroup = userGroupRepository.findById(userGroup.getUgId());
+    public ResponseEntity<Object> makeCaptain(Long userGroupId) {
+        Optional<UserGroup> optionalUserGroup = userGroupRepository.findById(userGroupId);
         if (optionalUserGroup.isPresent()) {
             UserGroup updateUserGroup = optionalUserGroup.get();
             updateUserGroup.setUgRoleName(RoleEnum.CAPTAIN);

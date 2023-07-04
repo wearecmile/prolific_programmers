@@ -89,14 +89,10 @@ public class GroupServiceImpl implements GroupService {
     public ResponseEntity<Object> update(Group group) {
         Optional<Group> optionalGroup = groupRepository.findById(group.getGroupId());
         if (optionalGroup.isPresent()) {
-            Group updateGroup = optionalGroup.get();
-            updateGroup.setGroupName(group.getGroupName());
-            updateGroup.setGroupDescription(group.getGroupDescription());
-            updateGroup.setGroupUpdatedDateTime(group.getGroupUpdatedDateTime());
-            groupRepository.save(updateGroup);
+            Group updateGroup = groupRepository.save(group);
             return ResponseEntity.status((HttpStatus.OK))
                     .body(JsonResponse.builder()
-                            .data(optionalGroup)
+                            .data(updateGroup)
                             .message(StringConstants.REQUEST_SUCCESS_MESSAGE_GROUP_UPDATED)
                             .status(HttpStatus.OK)
                             .statusCode(HttpStatus.OK.value())
@@ -131,11 +127,11 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public ResponseEntity<Object> createGroup(Group group) {
-        group = groupRepository.save(group);
-        if (group != null) {
+        try {
+            Group savedGroup = groupRepository.save(group);
             UserGroup userGroup = UserGroup.builder()
-                    .ugGroupsId(group.getGroupId())
-                    .ugUserId(group.getGroupCreatedBy())
+                    .ugGroupId(savedGroup.getGroupId())
+                    .ugUserId(savedGroup.getGroupCreatedBy())
                     .ugRoleName(RoleEnum.CAPTAIN)
                     .build();
             userGroupRepository.save(userGroup);
@@ -144,14 +140,16 @@ public class GroupServiceImpl implements GroupService {
                             .statusCode(HttpStatus.OK.value())
                             .message(StringConstants.REQUEST_SUCCESS_MESSAGE_GROUP_CREATED)
                             .status(HttpStatus.OK)
-                            .data(group)
+                            .data(savedGroup)
                             .build());
         }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                JsonResponse.builder()
-                        .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_GROUP_NOT_CREATED)
-                        .status(HttpStatus.BAD_REQUEST)
-                        .build());
+        catch(Exception ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    JsonResponse.builder()
+                            .statusCode(HttpStatus.BAD_REQUEST.value())
+                            .message(StringConstants.REQUEST_FAILURE_MESSAGE_GROUP_NOT_CREATED)
+                            .status(HttpStatus.BAD_REQUEST)
+                            .build());
+        }
     }
 }

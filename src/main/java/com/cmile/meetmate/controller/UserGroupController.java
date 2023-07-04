@@ -65,8 +65,8 @@ public class UserGroupController {
         return userGroupService.findByGroupAndRole(id, roleName);
     }
 
-    @PutMapping(value = ApiConstants.REQUEST_MAPPING_KEY_MAKE_CAPTAIN)
-    public ResponseEntity<Object> put(@RequestBody UserGroup userGroup) {
-        return userGroupService.makeCaptain(userGroup);
+    @PutMapping(value = ApiConstants.REQUEST_MAPPING_KEY_MAKE_CAPTAIN + ApiConstants.REQUEST_MAPPING_KEY_ID)
+    public ResponseEntity<Object> makeCaptain(@PathVariable Long id) {
+        return userGroupService.makeCaptain(id);
     }
 }

@@ -23,7 +23,7 @@ public interface UserGroupRepository extends JpaRepository<UserGroup, Long> {
 
 //    List<UserGroup> findAllByUgUserId(Long ugUserId);
 
-//    List<UserGroup> findAllByUgGroupsId(Long ugGroupsId);
+//    List<UserGroup> findAllByUgGroupId(Long ugGroupsId);
 
-    List<UserGroup> findAllByUgGroupsIdAndUgRoleName(Long ugGroupsId, RoleEnum ugRoleName);
+    List<UserGroup> findAllByUgGroupIdAndUgRoleName(Long ugGroupsId, RoleEnum ugRoleName);
 }

@@ -21,8 +21,8 @@ public class GroupSettings {
     @Column(name = "gs_id")
     private Long gsId;
 
-    @Column(name = "gs_groups_id")
-    private Long gsGroupsId;
+    @Column(name = "gs_group_id", unique = true)
+    private Long gsGroupId;
 
     @Column(name = "gs_captain_will_pay")
     private Boolean gsCaptainWillPay = Boolean.FALSE;
@@ -38,7 +38,7 @@ public class GroupSettings {
     @Column(name = "gs_updated_date_time")
     private Date gsUpdatedDateTime = new Date();
 
-//    @OneToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "gs_groups_id", insertable = false, updatable = false)
-//    private Groups groups;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "gs_group_id", insertable = false, updatable = false)
+    private Group group;
 }

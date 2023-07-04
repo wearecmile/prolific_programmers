@@ -25,5 +25,5 @@ public interface UserGroupService {
 
     ResponseEntity<Object> findByGroupAndRole(Long groupId, RoleEnum roleName);
 
-    ResponseEntity<Object> makeCaptain(UserGroup userGroup);
+    ResponseEntity<Object> makeCaptain(Long userGroupId);
 }
