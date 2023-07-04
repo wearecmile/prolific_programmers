@@ -1,11 +1,14 @@
 package com.cmile.meetmate.serviceimpl;
 
+import com.cmile.meetmate.entity.Group;
 import com.cmile.meetmate.entity.Role;
 import com.cmile.meetmate.entity.User;
 import com.cmile.meetmate.entity.UserFcmToken;
 import com.cmile.meetmate.enums.Permission;
+import com.cmile.meetmate.enums.RoleEnum;
 import com.cmile.meetmate.models.request.AuthenticationRequest;
 import com.cmile.meetmate.models.response.AuthResponse;
+import com.cmile.meetmate.models.response.CaptainAuthResponse;
 import com.cmile.meetmate.repository.UserRepository;
 import com.cmile.meetmate.service.AuthService;
 import com.cmile.meetmate.service.UserFcmTokenService;
@@ -78,5 +81,20 @@ public class AuthServiceImpl implements AuthService {
         authResponse.setFcmToken(userFcmToken.getUftFcmToken());
         authResponse.setUserRole(role);
         return authResponse;
+    }
+
+    @Override
+    public CaptainAuthResponse authCaptainResponseGenerator(UserFcmToken userFcmToken, List<Group> groupList, RoleEnum roleEnum){
+        if (groupList.isEmpty())
+            return null;
+        CaptainAuthResponse captainAuthResponse = new CaptainAuthResponse();
+        captainAuthResponse.setUser(userFcmToken.getUser());
+        captainAuthResponse.setUid(userFcmToken.getUftUid());
+        captainAuthResponse.setActive(Boolean.TRUE);
+        captainAuthResponse.setDeviceType(userFcmToken.getUftDeviceType());
+        captainAuthResponse.setFcmToken(userFcmToken.getUftFcmToken());
+        captainAuthResponse.setGroup(groupList);
+        captainAuthResponse.setUserRole(roleEnum);
+        return captainAuthResponse;
     }
 }
