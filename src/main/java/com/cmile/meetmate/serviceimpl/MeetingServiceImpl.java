@@ -128,8 +128,8 @@ public class MeetingServiceImpl implements MeetingService {
     }
 
     @Override
-    public ResponseEntity<Object> findAllMeetingByChapter(Long meetingId) {
-        List<Meeting> meetingList = meetingRepository.findAllMeetingIdByMeetingChapterId(meetingId);
+    public ResponseEntity<Object> findAllMeetingByGroup(Long meetingId) {
+        List<Meeting> meetingList = meetingRepository.findAllMeetingIdByMeetingGroupId(meetingId);
         if (meetingList.isEmpty())
             return ResponseEntity.status((HttpStatus.BAD_REQUEST))
                     .body(JsonResponse.builder()

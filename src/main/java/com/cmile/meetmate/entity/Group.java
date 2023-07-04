@@ -2,11 +2,11 @@ package com.cmile.meetmate.entity;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+
 
 @Data
 @Builder
@@ -15,7 +15,6 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@SQLDelete(sql = "update groups set group_is_active = false where group_id = ?")
 @Table(name = "groups")
 public class Group {
 
@@ -33,6 +32,9 @@ public class Group {
     @Column(name = "group_is_active")
     private Boolean groupIsActive;
 
+    @Column(name = "group_created_by")
+    private Long groupCreatedBy;
+
     @CreationTimestamp
     @Column(name = "group_created_date_time", nullable = false, updatable = false)
     private Date groupCreatedDateTime = new Date();
@@ -40,4 +42,8 @@ public class Group {
     @UpdateTimestamp
     @Column(name = "group_updated_date_time")
     private Date groupUpdatedDateTime = new Date();
+
+    @OneToOne
+    @JoinColumn(name = "group_created_by", insertable = false, updatable = false)
+    private User user;
 }

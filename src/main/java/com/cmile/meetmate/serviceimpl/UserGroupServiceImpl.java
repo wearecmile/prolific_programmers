@@ -3,6 +3,7 @@ package com.cmile.meetmate.serviceimpl;
 import com.cmile.meetmate.entity.Group;
 import com.cmile.meetmate.entity.User;
 import com.cmile.meetmate.entity.UserGroup;
+import com.cmile.meetmate.enums.RoleEnum;
 import com.cmile.meetmate.models.JsonResponse;
 import com.cmile.meetmate.repository.UserGroupRepository;
 import com.cmile.meetmate.service.UserGroupService;
@@ -64,7 +65,7 @@ public class UserGroupServiceImpl implements UserGroupService {
 
     @Override
     public ResponseEntity<Object> save(UserGroup userGroup) {
-        UserGroup userGroupExists = userGroupRepository.findByUgUserIdAndUgGroupId(userGroup.getUgUserId(), userGroup.getUgGroupId());
+        UserGroup userGroupExists = userGroupRepository.findByUgUserIdAndUgGroupId(userGroup.getUgUserId(), userGroup.getUgGroupsId());
         if(userGroupExists!=null)
             userGroup.setUgId(userGroupExists.getUgId());
         userGroup = userGroupRepository.save(userGroup);
@@ -90,7 +91,7 @@ public class UserGroupServiceImpl implements UserGroupService {
         Optional<UserGroup> optionalUserGroup = userGroupRepository.findById(userGroup.getUgId());
         if (optionalUserGroup.isPresent()) {
             UserGroup updateUserGroup = optionalUserGroup.get();
-            updateUserGroup.setUgGroupId(userGroup.getUgGroupId());
+            updateUserGroup.setUgGroupsId(userGroup.getUgGroupsId());
             updateUserGroup.setUgUserId(userGroup.getUgUserId());
             updateUserGroup.setUgRoleName(userGroup.getUgRoleName());
             updateUserGroup.setUgUpdatedDateTime(userGroup.getUgUpdatedDateTime());
@@ -167,6 +168,88 @@ public class UserGroupServiceImpl implements UserGroupService {
                         .message(StringConstants.REQUEST_SUCCESS_MESSAGE_GROUP_MEMBERS_FETCHED)
                         .status(HttpStatus.OK)
                         .statusCode(HttpStatus.OK.value())
+                        .build());
+    }
+
+//    @Override
+//    public ResponseEntity<Object> findAllByUser(Long userId) {
+//        List<UserGroup> userGroupList = userGroupRepository.findAllByUgUserId(userId);
+//        if (userGroupList.isEmpty())
+//            return ResponseEntity.status((HttpStatus.BAD_REQUEST))
+//                    .body(JsonResponse.builder()
+//                            .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_USER_GROUP_FOUND)
+//                            .status(HttpStatus.BAD_REQUEST)
+//                            .statusCode(HttpStatus.BAD_REQUEST.value())
+//                            .build());
+//
+//        return ResponseEntity.status((HttpStatus.OK))
+//                .body(JsonResponse.builder()
+//                        .data(userGroupList)
+//                        .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_GROUP_FETCHED_BY_USER)
+//                        .status(HttpStatus.OK)
+//                        .statusCode(HttpStatus.OK.value())
+//                        .build());
+//    }
+
+//    @Override
+//    public ResponseEntity<Object> findAllByGroup(Long groupId) {
+//        List<UserGroup> userGroupList = userGroupRepository.findAllByUgGroupsId(groupId);
+//        if (userGroupList.isEmpty())
+//            return ResponseEntity.status((HttpStatus.BAD_REQUEST))
+//                    .body(JsonResponse.builder()
+//                            .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_USER_GROUP_FOUND)
+//                            .status(HttpStatus.BAD_REQUEST)
+//                            .statusCode(HttpStatus.BAD_REQUEST.value())
+//                            .build());
+//
+//        return ResponseEntity.status((HttpStatus.OK))
+//                .body(JsonResponse.builder()
+//                        .data(userGroupList)
+//                        .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_GROUP_FETCHED_BY_GROUP)
+//                        .status(HttpStatus.OK)
+//                        .statusCode(HttpStatus.OK.value())
+//                        .build());
+//    }
+
+    @Override
+    public ResponseEntity<Object> findByGroupAndRole(Long groupId, RoleEnum roleName) {
+        List<UserGroup> userGroupList = userGroupRepository.findAllByUgGroupsIdAndUgRoleName(groupId, roleName);
+        if (userGroupList.isEmpty())
+            return ResponseEntity.status((HttpStatus.BAD_REQUEST))
+                    .body(JsonResponse.builder()
+                            .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_USER_GROUP_FOUND)
+                            .status(HttpStatus.BAD_REQUEST)
+                            .statusCode(HttpStatus.BAD_REQUEST.value())
+                            .build());
+        return ResponseEntity.status((HttpStatus.OK))
+                .body(JsonResponse.builder()
+                        .data(userGroupList)
+                        .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_GROUP_FETCHED_BY_GROUP_AND_ROLE)
+                        .status(HttpStatus.OK)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+    }
+
+    @Override
+    public ResponseEntity<Object> makeCaptain(UserGroup userGroup) {
+        Optional<UserGroup> optionalUserGroup = userGroupRepository.findById(userGroup.getUgId());
+        if (optionalUserGroup.isPresent()) {
+            UserGroup updateUserGroup = optionalUserGroup.get();
+            updateUserGroup.setUgRoleName(RoleEnum.CAPTAIN);
+            userGroupRepository.save(updateUserGroup);
+            return ResponseEntity.status((HttpStatus.OK))
+                    .body(JsonResponse.builder()
+                            .data(optionalUserGroup)
+                            .message(StringConstants.REQUEST_SUCCESS_MESSAGE_USER_GROUP_CAPTAIN_UPDATED)
+                            .status(HttpStatus.OK)
+                            .statusCode(HttpStatus.OK.value())
+                            .build());
+        }
+        return ResponseEntity.status((HttpStatus.BAD_REQUEST))
+                .body(JsonResponse.builder()
+                        .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_USER_GROUP_FOUND)
+                        .status(HttpStatus.BAD_REQUEST)
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
     }
 }

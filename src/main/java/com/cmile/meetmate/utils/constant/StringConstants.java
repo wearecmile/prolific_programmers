@@ -20,6 +20,7 @@ public class StringConstants {
     public static final String REQUEST_SUCCESS_MESSAGE_SELECTED_GROUP_FETCHED = "Fetched Group by id: ";
     public static final String REQUEST_FAILURE_MESSAGE_NO_GROUP_FOUND = "No Group Found";
 
+
     //User Group Controller
     public static final String REQUEST_SUCCESS_MESSAGE_USER_GROUP_CREATED = "User Group Created Successfully!!";
     public static final String REQUEST_FAILURE_MESSAGE_USER_GROUP_NOT_CREATED = "Failed to Create User Group";
@@ -32,6 +33,10 @@ public class StringConstants {
     public static final String REQUEST_FAILURE_MESSAGE_NO_MEMBER_GROUP_FOUND = "No group found for user id: ";
     public static final String REQUEST_SUCCESS_MESSAGE_GROUP_MEMBERS_FETCHED = "Group members fetched successfully";
     public static final String REQUEST_SUCCESS_MESSAGE_MEMBER_GROUPS_FETCHED = "Groups fetched successfully";
+    public static final String REQUEST_SUCCESS_MESSAGE_USER_GROUP_FETCHED_BY_USER = "User Group Fetched By User Successfully";
+    public static final String REQUEST_SUCCESS_MESSAGE_USER_GROUP_FETCHED_BY_GROUP = "User Fetched By User Group Successfully";
+    public static final String REQUEST_SUCCESS_MESSAGE_USER_GROUP_FETCHED_BY_GROUP_AND_ROLE = "User Group Fetched By Group And Role Successfully";
+    public static final String REQUEST_SUCCESS_MESSAGE_USER_GROUP_CAPTAIN_UPDATED = "User Group Captain Updated";
 
     //Role Controller
     public static final String REQUEST_SUCCESS_MESSAGE_ROLE_CREATED = "Role Created Successfully!!";
@@ -42,14 +47,14 @@ public class StringConstants {
     public static final String REQUEST_SUCCESS_MESSAGE_SELECTED_ROLE_FETCHED = "Fetched Role by id: ";
     public static final String REQUEST_FAILURE_MESSAGE_NO_ROLE_FOUND = "No Role Found";
 
-    //Chapter Controller
-    public static final String REQUEST_SUCCESS_MESSAGE_CHAPTER_CREATED = "Chapter Created Successfully!!";
-    public static final String REQUEST_FAILURE_MESSAGE_CHAPTER_NOT_CREATED = "Failed to Create Chapter";
-    public static final String REQUEST_SUCCESS_MESSAGE_CHAPTER_UPDATED = "Chapter Updated Successfully!!";
-    public static final String REQUEST_SUCCESS_MESSAGE_CHAPTER_DELETED = "Chapter Deleted Successfully!!";
-    public static final String REQUEST_SUCCESS_MESSAGE_CHAPTER_FETCHED = "Chapter Fetched Successfully!!";
-    public static final String REQUEST_SUCCESS_MESSAGE_SELECTED_CHAPTER_FETCHED = "Fetched Chapter by id: ";
-    public static final String REQUEST_FAILURE_MESSAGE_NO_CHAPTER_FOUND = "No Chapter Found";
+    //Group Settings Controller
+    public static final String REQUEST_SUCCESS_MESSAGE_GROUP_SETTINGS_CREATED = "Group Settings Created Successfully!!";
+    public static final String REQUEST_FAILURE_MESSAGE_GROUP_SETTINGS_NOT_CREATED = "Failed to Create Group Settings";
+    public static final String REQUEST_SUCCESS_MESSAGE_GROUP_SETTINGS_UPDATED = "Group Settings Updated Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_GROUP_SETTINGS_DELETED = "Group Settings Deleted Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_GROUP_SETTINGS_FETCHED = "Group Settings Fetched Successfully!!";
+    public static final String REQUEST_SUCCESS_MESSAGE_SELECTED_GROUP_SETTINGS_FETCHED = "Fetched Group Settings by id: ";
+    public static final String REQUEST_FAILURE_MESSAGE_NO_GROUP_SETTINGS_FOUND = "No Group Settings Found";
 
     //Swagger Constant
     public static final String TEXT_SWAGGER_TITLE = "All meet mate APIs";
@@ -92,5 +97,4 @@ public class StringConstants {
     public static final String REQUEST_SUCCESS_MESSAGE_USER_CHAPTER_UPDATED = "User Chapter updated successfully";
     public static final String REQUEST_FAILURE_MESSAGE_USER_CHAPTER_NOT_CREATED = "Failed to create User Chapter";
     public static final String REQUEST_FAILURE_MESSAGE_NO_USER_CHAPTER_FOUND = "No User Chapter found";
-
 }

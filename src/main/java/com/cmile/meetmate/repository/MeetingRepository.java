@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface MeetingRepository extends JpaRepository<Meeting, Long> {
-    List<Meeting> findAllMeetingIdByMeetingChapterId(Long chapterId);
+    List<Meeting> findAllMeetingIdByMeetingGroupId(Long groupId);
 
 }

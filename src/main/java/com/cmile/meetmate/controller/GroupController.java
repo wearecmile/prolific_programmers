@@ -38,4 +38,9 @@ public class GroupController {
     public ResponseEntity<Object> delete(@PathVariable Long id) {
         return groupService.delete(id);
     }
+
+    @PostMapping(value = ApiConstants.REQUEST_MAPPING_KEY_MAKE_CAPTAIN)
+    public ResponseEntity<Object> create(@RequestBody Group group) {
+        return groupService.createGroup(group);
+    }
 }

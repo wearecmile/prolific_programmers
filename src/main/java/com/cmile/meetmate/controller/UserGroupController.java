@@ -1,6 +1,7 @@
 package com.cmile.meetmate.controller;
 
 import com.cmile.meetmate.entity.UserGroup;
+import com.cmile.meetmate.enums.RoleEnum;
 import com.cmile.meetmate.service.UserGroupService;
 import com.cmile.meetmate.utils.constant.ApiConstants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,25 @@ public class UserGroupController {
     @GetMapping(ApiConstants.REQUEST_MAPPING_KEY_GROUP_GROUP_ID)
     public ResponseEntity<Object> findGroupMembers(@PathVariable Long groupId) {
         return userGroupService.findGroupMembers(groupId);
+    }
+
+//    @GetMapping(value = ApiConstants.REQUEST_MAPPING_KEY_FIND_USER_BY_GROUP)
+//    public ResponseEntity<Object> findAllByUser(@PathVariable Long id) {
+//        return userGroupService.findAllByUser(id);
+//    }
+//
+//    @GetMapping(value = ApiConstants.REQUEST_MAPPING_KEY_FIND_GROUP_BY_USER)
+//    public ResponseEntity<Object> findAllByGroup(@PathVariable Long id) {
+//        return userGroupService.findAllByGroup(id);
+//    }
+
+    @GetMapping(value = ApiConstants.REQUEST_MAPPING_KEY_FIND_BY_GROUP_AND_ROLE)
+    public ResponseEntity<Object> findByGroupAndRole(@PathVariable Long id, @PathVariable RoleEnum roleName) {
+        return userGroupService.findByGroupAndRole(id, roleName);
+    }
+
+    @PutMapping(value = ApiConstants.REQUEST_MAPPING_KEY_MAKE_CAPTAIN)
+    public ResponseEntity<Object> put(@RequestBody UserGroup userGroup) {
+        return userGroupService.makeCaptain(userGroup);
     }
 }

@@ -3,6 +3,7 @@ package com.cmile.meetmate.repository;
 import com.cmile.meetmate.entity.Group;
 import com.cmile.meetmate.entity.User;
 import com.cmile.meetmate.entity.UserGroup;
+import com.cmile.meetmate.enums.RoleEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -19,4 +20,10 @@ public interface UserGroupRepository extends JpaRepository<UserGroup, Long> {
     List<User> findByGroupId(Long groupId);
 
     UserGroup findByUgUserIdAndUgGroupId(Long userId, Long groupId);
+
+//    List<UserGroup> findAllByUgUserId(Long ugUserId);
+
+//    List<UserGroup> findAllByUgGroupsId(Long ugGroupsId);
+
+    List<UserGroup> findAllByUgGroupsIdAndUgRoleName(Long ugGroupsId, RoleEnum ugRoleName);
 }

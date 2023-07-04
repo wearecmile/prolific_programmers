@@ -13,4 +13,6 @@ public interface GroupService {
     ResponseEntity<Object> update(Group group);
 
     ResponseEntity<Object> delete(Long groupId);
+
+    ResponseEntity<Object> createGroup(Group group);
 }
