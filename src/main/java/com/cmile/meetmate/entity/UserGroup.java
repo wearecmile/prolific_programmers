@@ -3,6 +3,7 @@ package com.cmile.meetmate.entity;
 import com.cmile.meetmate.enums.RoleEnum;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
+@SQLDelete(sql = "update user_group set ug_is_active = false where ug_id = ?")
 @Table(name = "user_group")
 public class UserGroup {
 
@@ -32,6 +34,9 @@ public class UserGroup {
     @Column(name = "ug_role_name")
     @Enumerated(EnumType.STRING)
     private RoleEnum ugRoleName;
+
+    @Column(name = "ug_is_active")
+    private Boolean ugIsActive;
 
     @CreationTimestamp
     @Column(name = "ug_created_date_time", nullable = false, updatable = false)
