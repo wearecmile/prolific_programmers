@@ -1,5 +1,7 @@
 package com.cmile.meetmate.serviceimpl;
 
+import com.cmile.meetmate.entity.Group;
+import com.cmile.meetmate.entity.User;
 import com.cmile.meetmate.entity.UserGroup;
 import com.cmile.meetmate.models.JsonResponse;
 import com.cmile.meetmate.repository.UserGroupRepository;
@@ -62,6 +64,9 @@ public class UserGroupServiceImpl implements UserGroupService {
 
     @Override
     public ResponseEntity<Object> save(UserGroup userGroup) {
+        UserGroup userGroupExists = userGroupRepository.findByUgUserIdAndUgGroupId(userGroup.getUgUserId(), userGroup.getUgGroupId());
+        if(userGroupExists!=null)
+            userGroup.setUgId(userGroupExists.getUgId());
         userGroup = userGroupRepository.save(userGroup);
         if (userGroup == null) {
             return ResponseEntity.status((HttpStatus.BAD_REQUEST))
@@ -122,6 +127,46 @@ public class UserGroupServiceImpl implements UserGroupService {
                         .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_USER_GROUP_FOUND)
                         .status(HttpStatus.BAD_REQUEST)
                         .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .build());
+    }
+
+    @Override
+    public ResponseEntity<Object> findGroupsByUserId(Long userId) {
+        List<Group> groupList = userGroupRepository.findByUserId(userId);
+        if (groupList.isEmpty()) {
+            return ResponseEntity.status((HttpStatus.BAD_REQUEST))
+                    .body(JsonResponse.builder()
+                            .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_MEMBER_GROUP_FOUND + userId)
+                            .status(HttpStatus.BAD_REQUEST)
+                            .statusCode(HttpStatus.BAD_REQUEST.value())
+                            .build());
+        }
+        return ResponseEntity.status((HttpStatus.OK))
+                .body(JsonResponse.builder()
+                        .data(groupList)
+                        .message(StringConstants.REQUEST_SUCCESS_MESSAGE_MEMBER_GROUPS_FETCHED)
+                        .status(HttpStatus.OK)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+    }
+
+    @Override
+    public ResponseEntity<Object> findGroupMembers(Long groupId) {
+        List<User> users = userGroupRepository.findByGroupId(groupId);
+        if (users.isEmpty()) {
+            return ResponseEntity.status((HttpStatus.BAD_REQUEST))
+                    .body(JsonResponse.builder()
+                            .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_GROUP_MEMBERS_FOUND + groupId)
+                            .status(HttpStatus.BAD_REQUEST)
+                            .statusCode(HttpStatus.BAD_REQUEST.value())
+                            .build());
+        }
+        return ResponseEntity.status((HttpStatus.OK))
+                .body(JsonResponse.builder()
+                        .data(users)
+                        .message(StringConstants.REQUEST_SUCCESS_MESSAGE_GROUP_MEMBERS_FETCHED)
+                        .status(HttpStatus.OK)
+                        .statusCode(HttpStatus.OK.value())
                         .build());
     }
 }

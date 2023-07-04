@@ -38,4 +38,14 @@ public class UserGroupController {
     public ResponseEntity<Object> delete(@PathVariable Long id) {
         return userGroupService.delete(id);
     }
+
+    @GetMapping(ApiConstants.REQUEST_MAPPING_KEY_USER_USER_ID)
+    public ResponseEntity<Object> findGroupsByUserId(@PathVariable Long userId) {
+        return userGroupService.findGroupsByUserId(userId);
+    }
+
+    @GetMapping(ApiConstants.REQUEST_MAPPING_KEY_GROUP_GROUP_ID)
+    public ResponseEntity<Object> findGroupMembers(@PathVariable Long groupId) {
+        return userGroupService.findGroupMembers(groupId);
+    }
 }

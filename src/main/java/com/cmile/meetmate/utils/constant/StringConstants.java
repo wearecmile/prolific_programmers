@@ -28,6 +28,10 @@ public class StringConstants {
     public static final String REQUEST_SUCCESS_MESSAGE_USER_GROUP_FETCHED = "User Group Fetched Successfully!!";
     public static final String REQUEST_SUCCESS_MESSAGE_SELECTED_USER_GROUP_FETCHED = "Fetched User Group by id: ";
     public static final String REQUEST_FAILURE_MESSAGE_NO_USER_GROUP_FOUND = "No User Group Found";
+    public static final String REQUEST_FAILURE_MESSAGE_NO_GROUP_MEMBERS_FOUND = "No members found for group id: ";
+    public static final String REQUEST_FAILURE_MESSAGE_NO_MEMBER_GROUP_FOUND = "No group found for user id: ";
+    public static final String REQUEST_SUCCESS_MESSAGE_GROUP_MEMBERS_FETCHED = "Group members fetched successfully";
+    public static final String REQUEST_SUCCESS_MESSAGE_MEMBER_GROUPS_FETCHED = "Groups fetched successfully";
 
     //Role Controller
     public static final String REQUEST_SUCCESS_MESSAGE_ROLE_CREATED = "Role Created Successfully!!";

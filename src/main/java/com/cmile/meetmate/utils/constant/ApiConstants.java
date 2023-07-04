@@ -19,5 +19,7 @@ public class ApiConstants {
     public static final String REQUEST_MAPPING_KEY_ROLE = "/role";
     public static final String REQUEST_MAPPING_KEY_CHAPTER = "/chapter";
     public static final String REQUEST_MAPPING_KEY_ROLE_BY_ROLE_NAME = "/role-name/{userRole}";
+    public static final String REQUEST_MAPPING_KEY_USER_USER_ID = "/userId/{userId}";
+    public static final String REQUEST_MAPPING_KEY_GROUP_GROUP_ID = "/groupId/{groupId}";
 
 }

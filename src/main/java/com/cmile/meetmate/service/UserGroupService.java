@@ -13,4 +13,8 @@ public interface UserGroupService {
     ResponseEntity<Object> update(UserGroup userGroup);
 
     ResponseEntity<Object> delete(Long ugId);
+
+    ResponseEntity<Object> findGroupsByUserId(Long userId);
+
+    ResponseEntity<Object> findGroupMembers(Long groupId);
 }
