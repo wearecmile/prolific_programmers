@@ -15,6 +15,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
+
 @SQLDelete(sql = "update groups set group_is_active = false where group_id = ?")
 @Table(name = "groups")
 public class Group {
@@ -48,4 +49,3 @@ public class Group {
     @JoinColumn(name = "group_created_by", insertable = false, updatable = false)
     private User user;
 }
-

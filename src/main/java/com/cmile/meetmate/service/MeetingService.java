@@ -15,5 +15,5 @@ public interface MeetingService {
 
     ResponseEntity<Object> delete(Long meetingId);
 
-    ResponseEntity<Object> findAllMeetingByChapter(Long meetingId);
+    ResponseEntity<Object> findAllMeetingByGroup(Long meetingId);
 }
