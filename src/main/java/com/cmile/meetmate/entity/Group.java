@@ -16,8 +16,8 @@ import java.util.Date;
 @Setter
 @Entity
 
-@SQLDelete(sql = "update groups set group_is_active = false where group_id = ?")
-@Table(name = "groups")
+@SQLDelete(sql = "update groupss set group_is_active = false where group_id = ?")
+@Table(name = "groupss")
 public class Group {
 
     @Id

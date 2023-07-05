@@ -9,6 +9,8 @@ import com.cmile.meetmate.enums.RoleEnum;
 import com.cmile.meetmate.models.request.AuthenticationRequest;
 import com.cmile.meetmate.models.response.AuthResponse;
 import com.cmile.meetmate.models.response.CaptainAuthResponse;
+import com.cmile.meetmate.repository.GroupRepository;
+import com.cmile.meetmate.repository.RoleRepository;
 import com.cmile.meetmate.repository.UserRepository;
 import com.cmile.meetmate.service.AuthService;
 import com.cmile.meetmate.service.UserFcmTokenService;
@@ -32,6 +34,10 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private FirebaseAuth firebaseAuth;
     @Autowired
+    RoleRepository roleRepository;
+    @Autowired
+    GroupRepository groupRepository;
+    @Autowired
     private UserFcmTokenService userFcmTokenService;
 
     @Override
@@ -39,6 +45,13 @@ public class AuthServiceImpl implements AuthService {
         List<Permission> permissionArrayList = new ArrayList<>();
         String userPhoneNumber = firebaseAuth.getUser(request.getUid()).getPhoneNumber();
         Optional<User> user = userRepository.findByUserContact(userPhoneNumber);
+        Group group = null;
+        if (user != null){
+            List<Group> groupCaptain = new ArrayList<>();
+            if (user.get().getRole().getRoleName().equals(RoleEnum.CAPTAIN)){
+                groupCaptain = groupRepository.findAllByGroupCreatedBy(user.get().getUserId());
+            }
+        }
         if (user.isPresent()) {
             Role userRole = user.get().getRole();
             permissionArrayList.add(Permission.valueOf(userRole.getRoleName().toString()));

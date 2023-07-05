@@ -31,11 +31,11 @@ public class User {
     @Column(name = "user_role")
     private Long userRole;
 
-    @Column(name = "user_opening_balance")
-    private String userOpeningBalance;
+    @Column(name = "user_pending_amount")
+    private String userPendingAmount;
 
-    @Column(name = "user_current_balance")
-    private String userCurrentBalance;
+    @Column(name = "user_paid_amount")
+    private String userPaidAmount;
 
     @CreationTimestamp
     @Column(name = "user_created_date_time", nullable = false, updatable = false)
