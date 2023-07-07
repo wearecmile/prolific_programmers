@@ -1,9 +1,9 @@
 package com.cmile.meetmate.repository;
 
-import com.cmile.meetmate.entity.PaymentHistory;
+import com.cmile.meetmate.entity.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PaymentHistoryRepository extends JpaRepository<PaymentHistory, Long> {
+public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 }

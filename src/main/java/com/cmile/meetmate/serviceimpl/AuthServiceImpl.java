@@ -8,7 +8,6 @@ import com.cmile.meetmate.enums.Permission;
 import com.cmile.meetmate.enums.RoleEnum;
 import com.cmile.meetmate.models.request.AuthenticationRequest;
 import com.cmile.meetmate.models.response.AuthResponse;
-import com.cmile.meetmate.models.response.CaptainAuthResponse;
 import com.cmile.meetmate.repository.GroupRepository;
 import com.cmile.meetmate.repository.RoleRepository;
 import com.cmile.meetmate.repository.UserRepository;
@@ -48,8 +47,25 @@ public class AuthServiceImpl implements AuthService {
         Group group = null;
         if (user != null){
             List<Group> groupCaptain = new ArrayList<>();
-            if (user.get().getRole().getRoleName().equals(RoleEnum.CAPTAIN)){
+            Role userRole = user.get().getRole();
+            if (userRole.equals(RoleEnum.CAPTAIN)){
                 groupCaptain = groupRepository.findAllByGroupCreatedBy(user.get().getUserId());
+                permissionArrayList.add(Permission.valueOf(userRole.getRoleName().toString()));
+                List<String> permissions = permissionArrayList
+                        .stream()
+                        .map(Enum::toString)
+                        .collect(Collectors.toList());
+                Map<String, Object> claims = Map.of(StringConstants.CAPTAIN_ROLE_STRING_CONSTANT, permissions);
+                Optional<UserFcmToken> userFcmTokenOptional = userFcmTokenService.findByUserId(user.get().getUserId());
+                if (userFcmTokenOptional.isPresent()) {
+                    UserFcmToken userFcmToken = new UserFcmToken();
+                    userFcmToken.setUftUid(request.getUid());
+                    userFcmToken.setUftFcmToken(request.getFcmDeviceToken());
+                    userFcmToken.setUftDeviceType(request.getDeviceOS());
+                    userFcmToken.setUftIsActive(Boolean.TRUE);
+                    firebaseAuth.setCustomUserClaims(request.getUid(), claims);
+                    return authCaptainResponseGenerator(userFcmTokenService.save(userFcmToken), groupCaptain, user.get(), userRole);
+                }
             }
         }
         if (user.isPresent()) {
@@ -96,18 +112,18 @@ public class AuthServiceImpl implements AuthService {
         return authResponse;
     }
 
-    @Override
-    public CaptainAuthResponse authCaptainResponseGenerator(UserFcmToken userFcmToken, List<Group> groupList, RoleEnum roleEnum){
+    public AuthResponse authCaptainResponseGenerator(UserFcmToken userFcmToken, List<Group> groupList, User user, Role role){
         if (groupList.isEmpty())
             return null;
-        CaptainAuthResponse captainAuthResponse = new CaptainAuthResponse();
-        captainAuthResponse.setUser(userFcmToken.getUser());
-        captainAuthResponse.setUid(userFcmToken.getUftUid());
-        captainAuthResponse.setActive(Boolean.TRUE);
-        captainAuthResponse.setDeviceType(userFcmToken.getUftDeviceType());
-        captainAuthResponse.setFcmToken(userFcmToken.getUftFcmToken());
-        captainAuthResponse.setGroup(groupList);
-        captainAuthResponse.setUserRole(roleEnum);
-        return captainAuthResponse;
+        AuthResponse authResponse = new AuthResponse();
+        authResponse.setUser(user);
+        authResponse.setUser(userFcmToken.getUser());
+        authResponse.setUid(userFcmToken.getUftUid());
+        authResponse.setActive(Boolean.TRUE);
+        authResponse.setDeviceType(userFcmToken.getUftDeviceType());
+        authResponse.setFcmToken(userFcmToken.getUftFcmToken());
+        authResponse.setGroup(groupList);
+        authResponse.setUserRole(role);
+        return authResponse;
     }
 }

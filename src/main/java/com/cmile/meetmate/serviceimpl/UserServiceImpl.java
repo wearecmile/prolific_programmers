@@ -95,7 +95,6 @@ public class UserServiceImpl implements UserService {
             updateUser.setUserName(user.getUserName());
             updateUser.setUserContact(user.getUserContact());
             updateUser.setUserRole(user.getUserRole());
-            updateUser.setUserPendingAmount(user.getUserPendingAmount());
             updateUser.setUserUpdatedDateTime(user.getUserUpdatedDateTime());
             userRepository.save(updateUser);
             return ResponseEntity.status(HttpStatus.OK).body(

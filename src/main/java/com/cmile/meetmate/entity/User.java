@@ -31,12 +31,6 @@ public class User {
     @Column(name = "user_role")
     private Long userRole;
 
-    @Column(name = "user_pending_amount")
-    private String userPendingAmount;
-
-    @Column(name = "user_paid_amount")
-    private String userPaidAmount;
-
     @CreationTimestamp
     @Column(name = "user_created_date_time", nullable = false, updatable = false)
     private Date userCreatedDateTime = new Date();

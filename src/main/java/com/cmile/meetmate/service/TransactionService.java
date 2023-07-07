@@ -1,17 +1,17 @@
 package com.cmile.meetmate.service;
 
-import com.cmile.meetmate.entity.PaymentHistory;
+import com.cmile.meetmate.entity.Transaction;
 import org.springframework.http.ResponseEntity;
 
-public interface PaymentHistoryService {
+public interface TransactionService {
 
     ResponseEntity<Object> findAll();
 
     ResponseEntity<Object> findById(Long phId);
 
-    ResponseEntity<Object> save(PaymentHistory paymentHistory);
+    ResponseEntity<Object> save(Transaction transaction);
 
-    ResponseEntity<Object> update(PaymentHistory paymentHistory);
+    ResponseEntity<Object> update(Transaction transaction);
 
     ResponseEntity<Object> delete(Long phId);
 }

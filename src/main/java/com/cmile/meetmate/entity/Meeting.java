@@ -29,7 +29,7 @@ public class Meeting {
     private String meetingNote;
 
     @Column(name = "meeting_cost")
-    private String meetingCost;
+    private Float meetingCost;
 
     @Column(name = "meeting_date")
     private Date meetingDate;
@@ -47,6 +47,12 @@ public class Meeting {
 
     @Column(name = "meeting_group_id")
     private Long meetingGroupId;
+
+    @Column(name = "meeting_pending_amount")
+    private Float meetingPendingAmount;
+
+    @Column(name = "meeting_paid_amount")
+    private Float meetingPaidAmount;
 
     @ManyToOne
     @JoinColumn(name = "meeting_group_id", insertable = false, updatable = false)

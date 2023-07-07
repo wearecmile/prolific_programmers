@@ -101,6 +101,7 @@ public class StringConstants {
 
     //Auth
     public static final String CUSTOM_ROLE_STRING_CONSTANT = "custom_claims";
+    public static final String CAPTAIN_ROLE_STRING_CONSTANT = "captain_claims";
     public static final String REQUEST_FAILURE_MESSAGE_UNAUTHORIZED_TOKEN = "Unauthorized token found";
     public static final String REQUEST_FAILURE_MESSAGE_AUTHENTICATION_FAILED = "Entered User doesn't have required permission.Please contact Admin!";
     public static final String REQUEST_SUCCESS_MESSAGE_AUTH_SUCCESS = "Auth successful!!";

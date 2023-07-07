@@ -28,7 +28,7 @@ public class MeetingController {
         return meetingService.findById(id);
     }
 
-    @GetMapping(value = ApiConstants.REQUEST_MAPPING_KEY_FIND_ALL_MEETING_BY_CHAPTER_ID)
+    @GetMapping(value = ApiConstants.REQUEST_MAPPING_KEY_FIND_ALL_MEETING_BY_GROUP_ID)
     public ResponseEntity<Object> findAllMeetingByChapter(@PathVariable Long id) {
         return meetingService.findAllMeetingByGroup(id);
     }

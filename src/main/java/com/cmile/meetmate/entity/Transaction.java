@@ -15,7 +15,7 @@ import java.util.Date;
 @Setter
 @Entity
 @Table(name = "payment_history")
-public class PaymentHistory {
+public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class PaymentHistory {
     private String phNote;
 
     @Column(name = "ph_amount")
-    private String phAmount;
+    private Float phAmount;
 
     @Column(name = "ph_date")
     private Date phDate;

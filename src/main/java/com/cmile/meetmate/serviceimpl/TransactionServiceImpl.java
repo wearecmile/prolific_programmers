@@ -1,9 +1,9 @@
 package com.cmile.meetmate.serviceimpl;
 
-import com.cmile.meetmate.entity.PaymentHistory;
+import com.cmile.meetmate.entity.Transaction;
 import com.cmile.meetmate.models.JsonResponse;
-import com.cmile.meetmate.repository.PaymentHistoryRepository;
-import com.cmile.meetmate.service.PaymentHistoryService;
+import com.cmile.meetmate.repository.TransactionRepository;
+import com.cmile.meetmate.service.TransactionService;
 import com.cmile.meetmate.utils.constant.StringConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,15 +14,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PaymentHistoryServiceImpl implements PaymentHistoryService {
+public class TransactionServiceImpl implements TransactionService {
 
     @Autowired
-    PaymentHistoryRepository paymentHistoryRepository;
+    TransactionRepository transactionRepository;
 
     @Override
     public ResponseEntity<Object> findAll() {
-        List<PaymentHistory> paymentHistoryList = paymentHistoryRepository.findAll();
-        if (paymentHistoryList.isEmpty()) {
+        List<Transaction> transactionList = transactionRepository.findAll();
+        if (transactionList.isEmpty()) {
             return ResponseEntity.status((HttpStatus.BAD_REQUEST))
                     .body(JsonResponse.builder()
                             .message(StringConstants.REQUEST_FAILURE_MESSAGE_NO_PAYMENT_HISTORY_FOUND)
@@ -33,7 +33,7 @@ public class PaymentHistoryServiceImpl implements PaymentHistoryService {
 
         return ResponseEntity.status((HttpStatus.OK))
                 .body(JsonResponse.builder()
-                        .data(paymentHistoryList)
+                        .data(transactionList)
                         .message(StringConstants.REQUEST_SUCCESS_MESSAGE_PAYMENT_HISTORY_FETCHED)
                         .status(HttpStatus.OK)
                         .statusCode(HttpStatus.OK.value())
@@ -42,7 +42,7 @@ public class PaymentHistoryServiceImpl implements PaymentHistoryService {
 
     @Override
     public ResponseEntity<Object> findById(Long phId) {
-        Optional<PaymentHistory> optionalPaymentHistory = paymentHistoryRepository.findById(phId);
+        Optional<Transaction> optionalPaymentHistory = transactionRepository.findById(phId);
         if (optionalPaymentHistory.isPresent()) {
             return ResponseEntity.status((HttpStatus.OK))
                     .body(JsonResponse.builder()
@@ -61,9 +61,9 @@ public class PaymentHistoryServiceImpl implements PaymentHistoryService {
     }
 
     @Override
-    public ResponseEntity<Object> save(PaymentHistory paymentHistory) {
-        paymentHistory = paymentHistoryRepository.save(paymentHistory);
-        if (paymentHistory == null) {
+    public ResponseEntity<Object> save(Transaction transaction) {
+        transaction = transactionRepository.save(transaction);
+        if (transaction == null) {
             return ResponseEntity.status((HttpStatus.BAD_REQUEST))
                     .body(JsonResponse.builder()
                             .message(StringConstants.REQUEST_FAILURE_MESSAGE_PAYMENT_HISTORY_NOT_CREATED)
@@ -73,7 +73,7 @@ public class PaymentHistoryServiceImpl implements PaymentHistoryService {
         }
         return ResponseEntity.status((HttpStatus.OK))
                 .body(JsonResponse.builder()
-                        .data(paymentHistory)
+                        .data(transaction)
                         .message(StringConstants.REQUEST_SUCCESS_MESSAGE_PAYMENT_HISTORY_CREATED)
                         .status(HttpStatus.OK)
                         .statusCode(HttpStatus.OK.value())
@@ -81,16 +81,16 @@ public class PaymentHistoryServiceImpl implements PaymentHistoryService {
     }
 
     @Override
-    public ResponseEntity<Object> update(PaymentHistory paymentHistory) {
-        Optional<PaymentHistory> optionalPaymentHistory = paymentHistoryRepository.findById(paymentHistory.getPhId());
+    public ResponseEntity<Object> update(Transaction transaction) {
+        Optional<Transaction> optionalPaymentHistory = transactionRepository.findById(transaction.getPhId());
         if (optionalPaymentHistory.isPresent()) {
-            PaymentHistory updatePaymentHistory = optionalPaymentHistory.get();
-            updatePaymentHistory.setPhAmount(paymentHistory.getPhAmount());
-            updatePaymentHistory.setPhDate(paymentHistory.getPhDate());
-            updatePaymentHistory.setPhNote(paymentHistory.getPhNote());
-            updatePaymentHistory.setPhTime(paymentHistory.getPhTime());
-            updatePaymentHistory.setPhUpdatedDateTime(paymentHistory.getPhUpdatedDateTime());
-            paymentHistoryRepository.save(updatePaymentHistory);
+            Transaction updateTransaction = optionalPaymentHistory.get();
+            updateTransaction.setPhAmount(transaction.getPhAmount());
+            updateTransaction.setPhDate(transaction.getPhDate());
+            updateTransaction.setPhNote(transaction.getPhNote());
+            updateTransaction.setPhTime(transaction.getPhTime());
+            updateTransaction.setPhUpdatedDateTime(transaction.getPhUpdatedDateTime());
+            transactionRepository.save(updateTransaction);
             return ResponseEntity.status((HttpStatus.OK))
                     .body(JsonResponse.builder()
                             .data(optionalPaymentHistory)
@@ -109,8 +109,8 @@ public class PaymentHistoryServiceImpl implements PaymentHistoryService {
 
     @Override
     public ResponseEntity<Object> delete(Long phId) {
-        if (paymentHistoryRepository.findById(phId).isPresent()) {
-            paymentHistoryRepository.deleteById(phId);
+        if (transactionRepository.findById(phId).isPresent()) {
+            transactionRepository.deleteById(phId);
             return ResponseEntity.status((HttpStatus.OK))
                     .body(JsonResponse.builder()
                             .message(StringConstants.REQUEST_SUCCESS_MESSAGE_PAYMENT_HISTORY_DELETED)

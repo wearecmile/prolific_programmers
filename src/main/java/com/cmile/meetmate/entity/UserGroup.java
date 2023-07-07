@@ -35,6 +35,12 @@ public class UserGroup {
     @Enumerated(EnumType.STRING)
     private RoleEnum ugRoleName;
 
+    @Column(name = "ug_pending_amount")
+    private Float ugPendingAmount;
+
+    @Column(name = "ug_paid_amount")
+    private Float ugPaidAmount;
+
     @Column(name = "ug_is_active")
     private Boolean ugIsActive;
 
