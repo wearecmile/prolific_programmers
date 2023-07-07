@@ -14,10 +14,7 @@ import com.cmile.meetmate.utils.constant.StringConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Scheduler {
     @Autowired
@@ -48,6 +45,7 @@ public class Scheduler {
             for (User user : userGroupList) {
                 String name = user.getUserName();
                 String role = user.getRole().getRoleName().toString();
+                //Optional<UserFcmToken> userFcmTokenList = userFcmTokenService.findByUftDeviceType();
                 List<UserFcmToken> userFcmTokenListAndroid = userFcmTokenService.findByUserIdAndUftDeviceType(user.getUserId(), "android");
                 List<UserFcmToken> userFcmTokenListIos = userFcmTokenService.findByUserIdAndUftDeviceType(user.getUserId(), "ios");
                 List<UserFcmToken> userFcmTokenListWeb = userFcmTokenService.findByUserIdAndUftDeviceType(user.getUserId(), "web");

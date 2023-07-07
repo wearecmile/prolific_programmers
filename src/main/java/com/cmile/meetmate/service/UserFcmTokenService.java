@@ -13,5 +13,5 @@ public interface UserFcmTokenService {
 
     Optional<UserFcmToken> findByUserId(Long userId);
 
-    List<UserFcmToken> findByUserIdAndUftDeviceType(Long userId, String android);
+    List<UserFcmToken> findByUserIdAndUftDeviceType(Long userId, String  uftDeviceType);
 }
