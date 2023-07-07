@@ -45,10 +45,10 @@ public class AuthServiceImpl implements AuthService {
         String userPhoneNumber = firebaseAuth.getUser(request.getUid()).getPhoneNumber();
         Optional<User> user = userRepository.findByUserContact(userPhoneNumber);
         Group group = null;
-        if (user != null){
+        if (user != null) {
             List<Group> groupCaptain = new ArrayList<>();
             Role userRole = user.get().getRole();
-            if (userRole.equals(RoleEnum.CAPTAIN)){
+            if (userRole.equals(RoleEnum.CAPTAIN)) {
                 groupCaptain = groupRepository.findAllByGroupCreatedBy(user.get().getUserId());
                 permissionArrayList.add(Permission.valueOf(userRole.getRoleName().toString()));
                 List<String> permissions = permissionArrayList
@@ -112,7 +112,7 @@ public class AuthServiceImpl implements AuthService {
         return authResponse;
     }
 
-    public AuthResponse authCaptainResponseGenerator(UserFcmToken userFcmToken, List<Group> groupList, User user, Role role){
+    public AuthResponse authCaptainResponseGenerator(UserFcmToken userFcmToken, List<Group> groupList, User user, Role role) {
         if (groupList.isEmpty())
             return null;
         AuthResponse authResponse = new AuthResponse();

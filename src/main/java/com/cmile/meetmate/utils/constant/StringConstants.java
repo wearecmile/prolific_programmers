@@ -1,6 +1,22 @@
 package com.cmile.meetmate.utils.constant;
 
 public class StringConstants {
+    // Text Constants
+    public static final String TEXT_EMPTY = "";
+    public static final String TEXT_SPACE = " ";
+    public static final String TEXT_FOR = "for ";
+    public static final String TEXT_TO = " to ";
+    public static final String TEXT_SLASH = "/";
+    public static final String TEXT_COLON = ":";
+    public static final String TEXT_TYPE_TEXT_HTML = "text/html";
+    public static final String TEXT_DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
+    public static final String TEXT_TIME_FORMAT_HH_MM = "HH:mm";
+    public static final String TEXT_TIME_ZONE = "UTC";
+    public static final String DEFAULT_IS_ACTIVE = "true";
+    public static final String TEXT_TOPIC_PUBLISHING_KEY = "/p";
+    public static final String TEXT_STATIC_COUNTRY_CODE = "+91";
+    public static final String TEXT_MQTT_RESPONSE_OK = "OK";
+    public static final String TEXT_DECIMAL_FORMAT_PATTERN = "#.##";
 
     //User Controller
     public static final String REQUEST_SUCCESS_MESSAGE_USER_CREATED = "User Created Successfully!!";

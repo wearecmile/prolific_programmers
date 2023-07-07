@@ -66,7 +66,7 @@ public class UserGroupServiceImpl implements UserGroupService {
     @Override
     public ResponseEntity<Object> save(UserGroup userGroup) {
         UserGroup userGroupExists = userGroupRepository.findByUgUserIdAndUgGroupId(userGroup.getUgUserId(), userGroup.getUgGroupId());
-        if(userGroupExists!=null)
+        if (userGroupExists != null)
             userGroup.setUgId(userGroupExists.getUgId());
         userGroup = userGroupRepository.save(userGroup);
         if (userGroup == null) {

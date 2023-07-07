@@ -142,8 +142,7 @@ public class GroupServiceImpl implements GroupService {
                             .status(HttpStatus.OK)
                             .data(savedGroup)
                             .build());
-        }
-        catch(Exception ex) {
+        } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                     JsonResponse.builder()
                             .statusCode(HttpStatus.BAD_REQUEST.value())

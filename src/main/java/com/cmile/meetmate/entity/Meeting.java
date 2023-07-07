@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.util.Date;
 
 @Data
@@ -32,14 +33,17 @@ public class Meeting {
     private Float meetingCost;
 
     @Column(name = "meeting_date")
+    @Temporal(TemporalType.DATE)
     private Date meetingDate;
 
     @Column(name = "meeting_time")
-    private String meetingTime;
+    @Temporal(TemporalType.TIME)
+    private Time meetingTime;
 
     @CreationTimestamp
     @Column(name = "meeting_created_date_time", nullable = false, updatable = false)
-    private Date meetingCreatedDateTime = new Date();
+    @Temporal(TemporalType.DATE)
+    private Date meetingCreatedDate;
 
     @UpdateTimestamp
     @Column(name = "meeting_updated_date_time")
