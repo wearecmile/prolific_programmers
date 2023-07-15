@@ -27,3 +27,6 @@ spring:
   security:
     require-ssl: true
     oauth2:
+
+cron:
+  meetingExpression: '0 */12 * * *'

@@ -34,4 +34,9 @@ public class UserFcmTokenServiceImpl implements UserFcmTokenService {
     public List<UserFcmToken> findByUserIdAndUftDeviceType(Long userId, String uftDeviceType) {
         return userFcmTokenRepository.findByUserIdAndUftDeviceType(userId, uftDeviceType);
     }
+
+    @Override
+    public Optional<UserFcmToken> findByUftDeviceType(String  uftDeviceType){
+        return userFcmTokenRepository.findByUftDeviceType(uftDeviceType);
+    }
 }
