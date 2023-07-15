@@ -83,6 +83,7 @@ public class Scheduler {
 //                    firebaseNotificationsWeb.add(firebaseNotification);
 //                }
             }
+
         }
 //        NotificationFactory notificationFactories = new NotificationFactory();
 //        Notifications notificationsAndroid = notificationFactories.getNotification("android");
